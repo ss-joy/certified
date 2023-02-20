@@ -3,7 +3,12 @@ const app = express();
 const mongoose = require("mongoose");
 
 const studentRoutes = require("./routes/student-routes");
+
+app.use(express.urlencoded({ extended: false }));
+app.use(express.json());
+
 app.use(studentRoutes);
+
 mongoose.set("strictQuery", false);
 mongoose
   .connect(
