@@ -7,7 +7,6 @@ export default function SignUp() {
   const [email, setEmail] = useState("");
   const [reg, setReg] = useState("");
   const [failedStatus, setFailedStatus] = useState(false);
-  const [successStatus, setsuccessStatus] = useState(false);
 
   function handleEmailChange(e) {
     setEmail(e.target.value);
@@ -27,7 +26,7 @@ export default function SignUp() {
       body: JSON.stringify(studentInfo),
     });
     if (response.status >= 200 && response.status < 300) {
-      setsuccessStatus(true);
+      // const parsed = await response.json();
       navigate("/login");
     } else {
       setFailedStatus(true);
@@ -47,12 +46,6 @@ export default function SignUp() {
       {failedStatus && (
         <section id="failure">
           Sorry there was an error on the server.Please try again later.
-        </section>
-      )}
-      {successStatus && (
-        <section id="success">
-          You have successully signed up.Now you are being redirected to login
-          page.
         </section>
       )}
 
@@ -81,7 +74,6 @@ export default function SignUp() {
         </div>
         <button>Sign Up</button>
       </form>
-      <hr />
       <section id="info">
         Please note if you are are from the admin panel you will have to be
         added to the network manually for security purposes!

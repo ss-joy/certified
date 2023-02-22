@@ -9,9 +9,23 @@ export default function Login() {
   function handlePasswordChange(e) {
     setPassword(e.target.value);
   }
-  function handleSubmit(e){
-    e.preventDefault()
-    fetch('http://api/')
+  async function sendLoginRequest(StudentInfo) {
+    const response = await fetch("http://localhost:5000/api/login", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(StudentInfo),
+    });
+    console.log(response);
+  }
+  function handleSubmit(e) {
+    e.preventDefault();
+    const StudentInfo = {
+      email,
+      password,
+    };
+    sendLoginRequest(StudentInfo);
   }
   return (
     <div id="login-form">
@@ -34,7 +48,9 @@ export default function Login() {
             onChange={handlePasswordChange}
           />
         </div>
-        <button type="submit" onc>Log In</button>
+        <button type="submit" onc>
+          Log In
+        </button>
       </form>
     </div>
   );

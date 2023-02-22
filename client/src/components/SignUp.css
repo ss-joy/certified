@@ -11,16 +11,11 @@ label {
   margin-bottom: 0.5rem;
 }
 #signup-form #info {
-  background-color: rgb(201, 98, 98);
-  color: white;
-  margin-top: 1rem;
-  border-radius: 5px;
+  border-left: solid 2px rgb(201, 98, 98);
+  margin-top: 2rem;
   padding: 5px;
 }
-#signup-form hr {
-  margin: 15px;
-  height: 2px;
-}
+
 #signup-form #success {
   background-color: rgb(107, 219, 107);
   padding: 8px;
