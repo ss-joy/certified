@@ -9,9 +9,13 @@ export default function Login() {
   function handlePasswordChange(e) {
     setPassword(e.target.value);
   }
+  function handleSubmit(e){
+    e.preventDefault()
+    fetch('http://api/')
+  }
   return (
     <div id="login-form">
-      <form>
+      <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="email">Enter email</label>
           <input
@@ -30,7 +34,7 @@ export default function Login() {
             onChange={handlePasswordChange}
           />
         </div>
-        <button type="submit">Log In</button>
+        <button type="submit" onc>Log In</button>
       </form>
     </div>
   );

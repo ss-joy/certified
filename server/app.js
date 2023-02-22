@@ -1,13 +1,14 @@
 const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
+const cors = require("cors");
+const authRoutes = require("./routes/auth-routes");
 
-const studentRoutes = require("./routes/student-routes");
-
+app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-app.use(studentRoutes);
+app.use(authRoutes);
 
 mongoose.set("strictQuery", false);
 mongoose

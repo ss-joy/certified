@@ -1,14 +1,10 @@
 const mongoose = require("mongoose");
-const studentAuthSchema = mongoose.Schema({
-  name: {
-    type: String,
-    required: true,
-  },
+const studentSchema = mongoose.Schema({
   email: {
     type: String,
     required: true,
   },
-  registrationNumber: {
+  reg: {
     type: Number,
     required: true,
   },
@@ -17,4 +13,4 @@ const studentAuthSchema = mongoose.Schema({
     required: true,
   },
 });
-module.exports = mongoose.model("StudnetAuthInfo", studentAuthSchema);
+module.exports = mongoose.model("Student", studentSchema);

@@ -1,9 +1,13 @@
 import React, { useState } from "react";
 import "./SignUp.css";
+import { useNavigate } from "react-router-dom";
 export default function SignUp() {
+  const navigate = useNavigate();
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [reg, setReg] = useState("");
+  const [failedStatus, setFailedStatus] = useState(false);
+  const [successStatus, setsuccessStatus] = useState(false);
 
   function handleEmailChange(e) {
     setEmail(e.target.value);
@@ -14,9 +18,45 @@ export default function SignUp() {
   function handleRegChange(e) {
     setReg(e.target.value);
   }
+  async function sendSignupRequest(studentInfo) {
+    const response = await fetch("http://localhost:5000/api/signup", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(studentInfo),
+    });
+    if (response.status >= 200 && response.status < 300) {
+      setsuccessStatus(true);
+      navigate("/login");
+    } else {
+      setFailedStatus(true);
+    }
+  }
+  function handleSubmit(e) {
+    e.preventDefault();
+    const studentInfo = {
+      reg,
+      password,
+      email,
+    };
+    sendSignupRequest(studentInfo);
+  }
   return (
     <div id="signup-form">
-      <form>
+      {failedStatus && (
+        <section id="failure">
+          Sorry there was an error on the server.Please try again later.
+        </section>
+      )}
+      {successStatus && (
+        <section id="success">
+          You have successully signed up.Now you are being redirected to login
+          page.
+        </section>
+      )}
+
+      <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="email">Enter email</label>
           <input
@@ -41,6 +81,11 @@ export default function SignUp() {
         </div>
         <button>Sign Up</button>
       </form>
+      <hr />
+      <section id="info">
+        Please note if you are are from the admin panel you will have to be
+        added to the network manually for security purposes!
+      </section>
     </div>
   );
 }
