@@ -42,6 +42,8 @@ export default function Login() {
         <div>
           <label htmlFor="password">Enter Password</label>
           <input
+            autoComplete="off"
+            minLength={5}
             type="password"
             id="password"
             value={password}

@@ -32,9 +32,19 @@ header nav ul {
   height: 40px;
   width: 40px;
 }
+header nav a {
+  padding: 8px;
+  border-radius: 3px;
+}
 .active {
   color: white;
   background: rgb(125, 237, 125);
   padding: 8px;
   border-radius: 3px;
+}
+header nav a:hover {
+  padding: 8px;
+  border-radius: 3px;
+  color: white;
+  box-shadow: inset 0 -100px 0 0 #725ac1;
 }

@@ -1,12 +1,10 @@
 import React, { useState } from "react";
 import "./SignUp.css";
-import { useNavigate } from "react-router-dom";
 export default function SignUp() {
-  const navigate = useNavigate();
   const [password, setPassword] = useState("");
+  const [confirmPassword, setConfirmPassword] = useState("");
   const [email, setEmail] = useState("");
   const [reg, setReg] = useState("");
-  const [failedStatus, setFailedStatus] = useState(false);
 
   function handleEmailChange(e) {
     setEmail(e.target.value);
@@ -14,9 +12,13 @@ export default function SignUp() {
   function handlePasswordChange(e) {
     setPassword(e.target.value);
   }
+  function handleConfirmPasswordChange(e) {
+    setConfirmPassword(e.target.value);
+  }
   function handleRegChange(e) {
     setReg(e.target.value);
   }
+
   async function sendSignupRequest(studentInfo) {
     const response = await fetch("http://localhost:5000/api/signup", {
       method: "POST",
@@ -26,10 +28,9 @@ export default function SignUp() {
       body: JSON.stringify(studentInfo),
     });
     if (response.status >= 200 && response.status < 300) {
-      // const parsed = await response.json();
-      navigate("/login");
+      alert("You have successfully signed up");
     } else {
-      setFailedStatus(true);
+      alert("Something went wrong");
     }
   }
   function handleSubmit(e) {
@@ -39,20 +40,17 @@ export default function SignUp() {
       password,
       email,
     };
+
     sendSignupRequest(studentInfo);
   }
   return (
     <div id="signup-form">
-      {failedStatus && (
-        <section id="failure">
-          Sorry there was an error on the server.Please try again later.
-        </section>
-      )}
-
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="email">Enter email</label>
           <input
+            placeholder="Enter your email"
+            required
             type="email"
             id="email"
             value={email}
@@ -62,6 +60,9 @@ export default function SignUp() {
         <div>
           <label htmlFor="password">Enter Password</label>
           <input
+            minLength={5}
+            placeholder="Choose a password"
+            required
             type="password"
             id="password"
             value={password}
@@ -69,8 +70,28 @@ export default function SignUp() {
           />
         </div>
         <div>
+          <label htmlFor="confirm-password">Confirm your Password</label>
+          <input
+            minLength={5}
+            placeholder="PLease confirm your password"
+            required
+            type="password"
+            id="confirm-password"
+            value={confirmPassword}
+            onChange={handleConfirmPasswordChange}
+          />
+        </div>
+        <div>
           <label htmlFor="reg">Enter your reg no</label>
-          <input type="text" id="red" value={reg} onChange={handleRegChange} />
+          <input
+            min={500}
+            placeholder="Enter your registration number"
+            required
+            type="number"
+            id="red"
+            value={reg}
+            onChange={handleRegChange}
+          />
         </div>
         <button>Sign Up</button>
       </form>
