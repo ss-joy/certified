@@ -1,0 +1,13 @@
+#footer {
+  background-color: rgb(17, 0, 0);
+  color: white;
+  display: flex;
+  justify-content: space-around;
+  position: fixed;
+  bottom: 0;
+  width: 100vw;
+  padding: 8px;
+}
+#footer ul {
+  list-style: none;
+}

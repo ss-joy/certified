@@ -3,24 +3,24 @@ const app = express();
 const mongoose = require("mongoose");
 const cors = require("cors");
 const authRoutes = require("./routes/auth-routes");
-const session = require("express-session");
-const MongodbStore = require("connect-mongodb-session");
-const MongoDBStore = MongodbStore(session);
+// const session = require("express-session");
+// const MongodbStore = require("connect-mongodb-session");
+// const MongoDBStore = MongodbStore(session);
 
-const sessionStore = new MongoDBStore({
-  uri: "mongodb+srv://userOne:12345@cluster1.exfjbjn.mongodb.net/sas?retryWrites=true&w=majority",
-  databaseName: "sas-auth",
-  collection: "sessions",
-});
+// const sessionStore = new MongoDBStore({
+//   uri: "mongodb+srv://userOne:12345@cluster1.exfjbjn.mongodb.net/sas?retryWrites=true&w=majority",
+//   databaseName: "sas-auth",
+//   collection: "sessions",
+// });
 
-app.use(
-  session({
-    secret: "onek secret",
-    resave: false,
-    saveUninitialized: false,
-    store: sessionStore,
-  })
-);
+// app.use(
+//   session({
+//     secret: "onek secret",
+//     resave: false,
+//     saveUninitialized: false,
+//     store: sessionStore,
+//   })
+// );
 app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());

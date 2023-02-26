@@ -43,8 +43,7 @@ label {
 
 #signup-form button {
   margin: 20px auto;
-
-  /* display: inline-block; */
+  border-bottom: 2px violet solid;
   display: block;
   width: 150px;
   transition: all 0.2s ease-in;
@@ -115,4 +114,15 @@ label {
   margin: 2px;
   color: red;
   font-size: 12px;
+}
+#signup-form #sign-up-cred-bad {
+  display: block;
+  width: 70%;
+  margin: 0 auto;
+  text-align: center;
+  color: white;
+  background-color: rgb(220, 74, 74);
+  border-radius: 3px;
+  padding: 2px;
+  width: 300px;
 }

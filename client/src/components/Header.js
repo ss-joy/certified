@@ -1,8 +1,10 @@
-import React from "react";
+import React, { useContext } from "react";
 import "./Header.css";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../assets/sust.png";
+import AuthContext from "../contexts/auth-context";
 export default function Header() {
+  const authCtx = useContext(AuthContext);
   return (
     <header>
       <div id="logo">
@@ -15,12 +17,19 @@ export default function Header() {
           <li>
             <NavLink to={"/login"}>Login</NavLink>
           </li>
-          <li>
-            <NavLink to={"/signup"}>Signup</NavLink>
-          </li>
+          {!authCtx.isLoggedIn && (
+            <li>
+              <NavLink to={"/signup"}>Signup</NavLink>
+            </li>
+          )}
           <li>
             <NavLink to={"/about"}>About us</NavLink>
-          </li>
+          </li>{" "}
+          {authCtx.isLoggedIn && (
+            <li>
+              <NavLink to={"/about"}>Log out</NavLink>
+            </li>
+          )}
         </ul>
       </nav>
     </header>

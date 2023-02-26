@@ -1,8 +1,12 @@
-import React, { useState } from "react";
+import React, { useRef, useState, useContext } from "react";
 import "./Login.css";
+import AuthContext from "../contexts/auth-context";
 export default function Login() {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
+  const [didLoginFailed, setDidLoginFailed] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const authCtx = useContext(AuthContext);
   function handleEmailChange(e) {
     setEmail(e.target.value);
   }
@@ -17,7 +21,19 @@ export default function Login() {
       },
       body: JSON.stringify(StudentInfo),
     });
-    console.log(response);
+    setIsLoading(false);
+    if (response.status >= 200 && response.status < 300) {
+      const responseData = await response.json();
+      console.log(responseData);
+      authCtx.login(responseData.token);
+      alert("You have successfully logged in");
+    } else {
+      setDidLoginFailed(true);
+      setTimeout(() => {
+        setDidLoginFailed(false);
+      }, 2000);
+      // alert("Something went wrong");
+    }
   }
   function handleSubmit(e) {
     e.preventDefault();
@@ -26,10 +42,16 @@ export default function Login() {
       password,
     };
     sendLoginRequest(StudentInfo);
+    setIsLoading(true);
   }
   return (
     <div id="login-form">
       <form onSubmit={handleSubmit}>
+        {didLoginFailed && (
+          <span id="login-failed">
+            Signup failed!!!Please recheck your credentials!!
+          </span>
+        )}
         <div>
           <label htmlFor="email">Enter email</label>
           <input
@@ -51,9 +73,14 @@ export default function Login() {
           />
         </div>
         <button type="submit" onc>
-          Log In
+          {isLoading ? "Loading...." : "Log in"}
         </button>
       </form>
+      {didLoginFailed && (
+        <section id="login-failed">
+          Login Failed.Please recheck your credentials.
+        </section>
+      )}
     </div>
   );
 }

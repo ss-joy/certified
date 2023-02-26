@@ -5,6 +5,7 @@ export default function SignUp() {
   const [confirmPassword, setConfirmPassword] = useState("");
   const [email, setEmail] = useState("");
   const [reg, setReg] = useState("");
+  const [signUpHasError, setSignUpHasError] = useState(false);
 
   function handleEmailChange(e) {
     setEmail(e.target.value);
@@ -30,7 +31,11 @@ export default function SignUp() {
     if (response.status >= 200 && response.status < 300) {
       alert("You have successfully signed up");
     } else {
-      alert("Something went wrong");
+      setSignUpHasError(true);
+      setTimeout(() => {
+        setSignUpHasError(false);
+      }, 2000);
+      // alert("Something went wrong");
     }
   }
   function handleSubmit(e) {
@@ -45,6 +50,11 @@ export default function SignUp() {
   }
   return (
     <div id="signup-form">
+      {signUpHasError && (
+        <span id="sign-up-cred-bad">
+          Signup failed!!!Please recheck your credentials!!
+        </span>
+      )}
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="email">Enter email</label>
