@@ -1,11 +1,13 @@
-import React, { useRef, useState, useContext } from "react";
+import React, { useState, useContext } from "react";
 import "./Login.css";
+import { useNavigate } from "react-router-dom";
 import AuthContext from "../contexts/auth-context";
 export default function Login() {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [didLoginFailed, setDidLoginFailed] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const navigate = useNavigate();
   const authCtx = useContext(AuthContext);
   function handleEmailChange(e) {
     setEmail(e.target.value);
@@ -26,6 +28,10 @@ export default function Login() {
       const responseData = await response.json();
       console.log(responseData);
       authCtx.login(responseData.token);
+      authCtx.nowSetUserId(responseData.userId);
+      authCtx.setUserEmail(responseData.email);
+      console.log(authCtx);
+      navigate("/");
       alert("You have successfully logged in");
     } else {
       setDidLoginFailed(true);
@@ -72,9 +78,7 @@ export default function Login() {
             onChange={handlePasswordChange}
           />
         </div>
-        <button type="submit" onc>
-          {isLoading ? "Loading...." : "Log in"}
-        </button>
+        <button type="submit">{isLoading ? "Loading...." : "Log in"}</button>
       </form>
       {didLoginFailed && (
         <section id="login-failed">

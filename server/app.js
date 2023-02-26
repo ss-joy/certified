@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const cors = require("cors");
-const authRoutes = require("./routes/auth-routes");
+const studentRoutes = require("./routes/student-routes");
 // const session = require("express-session");
 // const MongodbStore = require("connect-mongodb-session");
 // const MongoDBStore = MongodbStore(session);
@@ -25,7 +25,7 @@ app.use(cors());
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
-app.use(authRoutes);
+app.use(studentRoutes);
 
 mongoose.set("strictQuery", false);
 mongoose

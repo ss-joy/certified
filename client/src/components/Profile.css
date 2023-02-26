@@ -1,0 +1,25 @@
+#profile {
+  color: white;
+  display: flex;
+  justify-content: space-around;
+}
+#profile #user-details {
+  padding: 20px;
+  margin: 60px;
+  margin-left: 80px;
+  border-radius: 4px;
+  background-color: #725ac1;
+}
+#profile ul {
+  list-style: none;
+}
+#profile li {
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+#profile-image img {
+  padding: 15px;
+  height: 300px;
+  margin-left: 80px;
+  margin-top: 40px;
+}

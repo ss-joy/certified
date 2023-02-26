@@ -36,13 +36,13 @@ async function loginStudent(req, res) {
   const studentFound = await Student.findOne({ email: email });
 
   if (!studentFound) {
-    return res.json({
+    return res.status(404).json({
       msg: "Couldnt find your email.Please sign up first to log in",
     });
   }
   const ans = await bcrypt.compare(password, studentFound.password);
-  if (ans) {
-    return res.json({
+  if (!ans) {
+    return res.status(404).json({
       msg: "Authentication failed",
     });
   }
@@ -57,11 +57,27 @@ async function loginStudent(req, res) {
     }
   );
   //login ok
-  res.json({
+  res.status(200).json({
     userId: studentFound.id,
     email: studentFound.email,
     token: jwtToken,
   });
 }
 
-module.exports = { signupStudent, loginStudent };
+function sendProfile(req, res) {
+  try {
+    const { authorization } = req.headers;
+    const token = authorization.split(" ")[1];
+    const decoded = jwt.verify(token, superdupersecret);
+    res.json({
+      msg: "lol",
+    });
+  } catch (err) {
+    res.json({
+      msg: "you are not logged in",
+    });
+    console.log(error);
+  }
+}
+
+module.exports = { signupStudent, loginStudent, sendProfile };
