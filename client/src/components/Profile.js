@@ -25,6 +25,7 @@ export default function Profile() {
   }, []);
   return (
     <div id="profile">
+      <span>{authCtx.userId}</span>
       <section id="profile-image">
         <img src={temp} alt="" />
       </section>
@@ -34,8 +35,9 @@ export default function Profile() {
           <li>Fathers Name:</li>
           <li>Mothers Name:</li>
           <li>HSC Reg No:</li>
+          <li>Birthday:</li>
         </ul>
-        <button>Apply to SUST Admission</button>
+        <button id="profile-btn">Apply to SUST Admission</button>
       </section>
     </div>
   );

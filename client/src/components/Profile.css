@@ -1,14 +1,19 @@
 #profile {
-  color: white;
+  /* color: white; */
   display: flex;
+  width: 1000px;
   justify-content: space-around;
+  border-radius: 8px;
+  box-shadow: 7px 7px 20px rgb(202, 146, 202);
+  margin: 10px auto;
 }
 #profile #user-details {
   padding: 20px;
   margin: 60px;
   margin-left: 80px;
-  border-radius: 4px;
-  background-color: #725ac1;
+  border-radius: 8px;
+  border: rgb(123, 235, 123) 3px solid;
+  box-shadow: 3px 3px 10px rgb(135, 219, 135);
 }
 #profile ul {
   list-style: none;
@@ -22,4 +27,14 @@
   height: 300px;
   margin-left: 80px;
   margin-top: 40px;
+}
+#profile #profile-btn {
+  padding: 5px;
+  border-radius: 4px;
+  color: white;
+  background-color: rgb(157, 114, 198);
+  font-weight: bold;
+}
+#profile #profile-btn:hover {
+  background-color: rgb(125, 29, 214);
 }

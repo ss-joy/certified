@@ -27,11 +27,15 @@ export default function Login() {
     if (response.status >= 200 && response.status < 300) {
       const responseData = await response.json();
       console.log(responseData);
-      const expirationTime = new Date(
-        new Date().getTime() + +responseData.expiresIn * 1000
-      );
-      console.log(expirationTime);
-      authCtx.login(responseData.token, expirationTime.toISOString());
+      // const expirationTime = new Date(
+      //   new Date().getTime() + +responseData.expiresIn * 1000
+      // );
+      // console.log(expirationTime);
+      // authCtx.login(responseData.token, expirationTime.toISOString());
+      authCtx.login(responseData.token);
+      if (responseData.isAdmin) {
+        authCtx.setAdmin(true);
+      }
       authCtx.nowSetUserId(responseData.userId);
       authCtx.setUserEmail(responseData.email);
       console.log(authCtx);
@@ -42,7 +46,7 @@ export default function Login() {
       setTimeout(() => {
         setDidLoginFailed(false);
       }, 2000);
-      // alert("Something went wrong");
+      alert("Something went wrong");
     }
   }
   function handleSubmit(e) {
