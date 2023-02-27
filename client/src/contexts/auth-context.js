@@ -10,6 +10,7 @@ const AuthContext = React.createContext({
   setUserEmail: (email) => {},
   nowSetUserId: (userId) => {},
   setAdmin: () => {},
+  // removeAdmin:()=>{}
 });
 
 export const AuthContextProvider = (props) => {
@@ -37,7 +38,11 @@ export const AuthContextProvider = (props) => {
   };
   const setAdmin = () => {
     setIsAdmin(true);
+    // localStorage.setItem()
   };
+  // const removeAdmin=()=>{
+
+  // }
 
   const contextValue = {
     isAdmin: isAdmin,
@@ -50,6 +55,7 @@ export const AuthContextProvider = (props) => {
     logout: logoutHandler,
     setUserEmail: setUserEmail,
     nowSetUserId: nowSetUserId,
+    // removeAdmin:removeAdmin
   };
 
   return (

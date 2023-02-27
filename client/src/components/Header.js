@@ -8,7 +8,7 @@ export default function Header() {
   function handleLogout() {
     authCtx.logout();
   }
-  console.log(authCtx.isAdmin);
+  const showAdminPanel = authCtx.isAdmin && authCtx.isLoggedIn;
   return (
     <header>
       <div id="logo">
@@ -18,7 +18,7 @@ export default function Header() {
       </div>
       <nav>
         <ul>
-          {authCtx.isAdmin && (
+          {showAdminPanel && (
             <li>
               <NavLink to={"/admin"}>Admin Control</NavLink>
             </li>

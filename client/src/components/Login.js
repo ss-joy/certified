@@ -26,7 +26,7 @@ export default function Login() {
     setIsLoading(false);
     if (response.status >= 200 && response.status < 300) {
       const responseData = await response.json();
-      console.log(responseData);
+      console.log("login data hash", responseData);
       // const expirationTime = new Date(
       //   new Date().getTime() + +responseData.expiresIn * 1000
       // );
@@ -38,7 +38,6 @@ export default function Login() {
       }
       authCtx.nowSetUserId(responseData.userId);
       authCtx.setUserEmail(responseData.email);
-      console.log(authCtx);
       navigate("/");
       alert("You have successfully logged in");
     } else {
