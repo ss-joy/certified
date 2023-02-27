@@ -5,6 +5,9 @@ import logo from "../assets/sust.png";
 import AuthContext from "../contexts/auth-context";
 export default function Header() {
   const authCtx = useContext(AuthContext);
+  function handleLogout() {
+    authCtx.logout();
+  }
   return (
     <header>
       <div id="logo">
@@ -30,7 +33,9 @@ export default function Header() {
           </li>
           {authCtx.isLoggedIn && (
             <li>
-              <NavLink to={"/about"}>Log out</NavLink>
+              <button id="logout" onClick={handleLogout}>
+                Log Out
+              </button>
             </li>
           )}
           {authCtx.isLoggedIn && (

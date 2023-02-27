@@ -27,7 +27,11 @@ export default function Login() {
     if (response.status >= 200 && response.status < 300) {
       const responseData = await response.json();
       console.log(responseData);
-      authCtx.login(responseData.token);
+      const expirationTime = new Date(
+        new Date().getTime() + +responseData.expiresIn * 1000
+      );
+      console.log(expirationTime);
+      authCtx.login(responseData.token, expirationTime.toISOString());
       authCtx.nowSetUserId(responseData.userId);
       authCtx.setUserEmail(responseData.email);
       console.log(authCtx);

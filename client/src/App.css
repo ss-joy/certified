@@ -7,3 +7,30 @@
 /* main {
   background-image: url("https://www.sust.edu/uploads/gallery/p-main-1469926802.jpg");
 } */
+.app #not-logged-in {
+  margin: 30px;
+  padding: 20px;
+  background-color: rgb(167, 101, 229);
+  text-align: center;
+  color: white;
+  font-size: 1.6rem;
+  border-radius: 4px;
+}
+.app #not-logged-in-img {
+  height: 200px;
+}
+.app #page-not-found-img {
+  height: 300px;
+}
+.app #page-not-found {
+  text-align: center;
+  font-size: 2rem;
+}
+.app #page-not-found article {
+  border-radius: 5px;
+  padding: 10px;
+  margin: 2px auto;
+  background-color: rgb(241, 131, 241);
+  width: 500px;
+  color: white;
+}
