@@ -26,13 +26,14 @@ export default function Login() {
     setIsLoading(false);
     if (response.status >= 200 && response.status < 300) {
       const responseData = await response.json();
-      console.log("login data hash", responseData);
       // const expirationTime = new Date(
       //   new Date().getTime() + +responseData.expiresIn * 1000
       // );
       // console.log(expirationTime);
       // authCtx.login(responseData.token, expirationTime.toISOString());
+      console.log(responseData);
       authCtx.login(responseData.token);
+      authCtx.setNewCurrentUserId(responseData.userId);
       if (responseData.isAdmin) {
         authCtx.setAdmin();
       }

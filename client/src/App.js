@@ -11,7 +11,6 @@ import sadUser from "./assets/notloggedin.png";
 import pageNotFound from "./assets/page-not-found.jpg";
 export default function App() {
   const authCtx = useContext(AuthContext);
-  console.log(authCtx);
   return (
     <div className="app">
       {authCtx.token}

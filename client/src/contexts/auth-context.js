@@ -4,7 +4,8 @@ const AuthContext = React.createContext({
   setAdmin: () => {},
 
   // email: "",
-  // userId: "",
+  currentUserId: "",
+  setNewCurrentUserId: () => {},
   token: "",
   isLoggedIn: false,
   login: (token) => {},
@@ -17,10 +18,10 @@ const AuthContext = React.createContext({
 export const AuthContextProvider = (props) => {
   const initialToken = localStorage.getItem("token");
   const initialIsAdminStatus = localStorage.getItem("userIsAdmin");
-  console.log("admin", initialIsAdminStatus);
+  const initialCurrentUserId = localStorage.getItem("currentUserId");
   const [token, setToken] = useState(initialToken);
   // const [email, setEmail] = useState(null);
-  // const [userId, setuserId] = useState(null);
+  const [currentUserId, setCurrentUserId] = useState(initialCurrentUserId);
   const [isAdmin, setIsAdmin] = useState(initialIsAdminStatus);
 
   const userIsLoggedIn = !!token;
@@ -37,9 +38,10 @@ export const AuthContextProvider = (props) => {
   // const setUserEmail = (email) => {
   //   setEmail(email);
   // };
-  // const nowSetUserId = (userId) => {
-  //   setuserId(userId);
-  // };
+  const setNewCurrentUserId = (userId) => {
+    localStorage.setItem("currentUserId", userId);
+    setCurrentUserId(userId);
+  };
   const setAdmin = () => {
     setIsAdmin(true);
     localStorage.setItem("userIsAdmin", "true");
@@ -54,8 +56,9 @@ export const AuthContextProvider = (props) => {
       value={{
         isAdmin: isAdmin,
         setAdmin: setAdmin,
+        currentUserId: currentUserId,
         // email: email,
-        // userId: userId,
+        setNewCurrentUserId: setNewCurrentUserId,
         token: token,
         isLoggedIn: userIsLoggedIn,
         login: loginHandler,

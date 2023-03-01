@@ -4,6 +4,7 @@ import AuthContext from "../contexts/auth-context";
 import "./Profile.css";
 export default function Profile() {
   const [adminName, setAdminName] = useState("");
+
   const [adminMobile, setAdminMobile] = useState("");
   const [adminEmail, setAdminEmail] = useState("");
 
@@ -23,27 +24,30 @@ export default function Profile() {
   }, [authCtx.token]);
 
   const getAdminProfile = useCallback(async () => {
-    const response = await fetch("http://localhost:5000/api/admin/details", {
-      headers: {
-        Authorization: `Bearer ${authCtx.token}`,
-      },
-    });
+    const response = await fetch(
+      `http://localhost:5000/api/admin/details/${authCtx.currentUserId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${authCtx.token}`,
+        },
+      }
+    );
     const responseData = await response.json();
     const { name, email, mobile } = responseData;
     setAdminEmail(email);
     setAdminMobile(mobile);
     setAdminName(name);
-    console.log(responseData);
-  }, [authCtx.token]);
+  }, [authCtx.token, authCtx.currentUserId]);
+  const isUserAdmin = authCtx.isAdmin === "true" || authCtx.isAdmin === true;
 
   useEffect(() => {
-    if (authCtx.isAdmin) {
+    if (isUserAdmin) {
       getAdminProfile();
     } else {
       getStudentProfile();
     }
-    // }, [authCtx.isAdmin, getAdminProfile, getStudentProfile]);
-  }, []);
+  }, [isUserAdmin, getAdminProfile, getStudentProfile]);
+  // }, []);
 
   const studentContent = (
     <ul>
@@ -64,20 +68,20 @@ export default function Profile() {
   );
   const adminMsg = (
     <article>
-      Welcome Mr. You are a part of the admin panel. Admins are granted with the
-      most important tasks here. These are the information we have about you.
+      Welcome {adminName} You are a part of the admin panel. Admins are granted
+      with the most important tasks here. These are the information we have
+      about you.
     </article>
   );
   return (
     <div id="profile">
-      <span>{authCtx.userId}</span>
       <section id="profile-image">
         <img src={temp} alt="" />
       </section>
       <section id="user-details">
-        {!authCtx.isAdmin && studentContent}
-        {authCtx.isAdmin && adminContent}
-        {authCtx.isAdmin && adminMsg}
+        {!isUserAdmin && studentContent}
+        {isUserAdmin && adminContent}
+        {isUserAdmin && adminMsg}
       </section>
     </div>
   );
