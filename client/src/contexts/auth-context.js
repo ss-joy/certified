@@ -1,23 +1,24 @@
-import React, { useCallback, useState } from "react";
+import React, { useState } from "react";
 const AuthContext = React.createContext({
   isAdmin: false,
-  email: "",
-  userId: "",
+  setAdmin: () => {},
+
+  // email: "",
+  // userId: "",
   token: "",
   isLoggedIn: false,
   login: (token) => {},
   logout: () => {},
-  setUserEmail: (email) => {},
-  nowSetUserId: (userId) => {},
-  setAdmin: () => {},
+  // setUserEmail: (email) => {},
+  // nowSetUserId: (userId) => {},
   // removeAdmin:()=>{}
 });
 
 export const AuthContextProvider = (props) => {
   const initialToken = localStorage.getItem("token");
   const [token, setToken] = useState(initialToken);
-  const [email, setEmail] = useState(null);
-  const [userId, setuserId] = useState(null);
+  // const [email, setEmail] = useState(null);
+  // const [userId, setuserId] = useState(null);
   const [isAdmin, setIsAdmin] = useState(false);
 
   const userIsLoggedIn = !!token;
@@ -30,12 +31,12 @@ export const AuthContextProvider = (props) => {
     localStorage.setItem("token", token);
   };
 
-  const setUserEmail = (email) => {
-    setEmail(email);
-  };
-  const nowSetUserId = (userId) => {
-    setuserId(userId);
-  };
+  // const setUserEmail = (email) => {
+  //   setEmail(email);
+  // };
+  // const nowSetUserId = (userId) => {
+  //   setuserId(userId);
+  // };
   const setAdmin = () => {
     setIsAdmin(true);
     // localStorage.setItem()
@@ -44,22 +45,22 @@ export const AuthContextProvider = (props) => {
 
   // }
 
-  const contextValue = {
-    isAdmin: isAdmin,
-    setAdmin: setAdmin,
-    email: email,
-    userId: userId,
-    token: token,
-    isLoggedIn: userIsLoggedIn,
-    login: loginHandler,
-    logout: logoutHandler,
-    setUserEmail: setUserEmail,
-    nowSetUserId: nowSetUserId,
-    // removeAdmin:removeAdmin
-  };
-
   return (
-    <AuthContext.Provider value={contextValue}>
+    <AuthContext.Provider
+      value={{
+        isAdmin: isAdmin,
+        setAdmin: setIsAdmin,
+        // email: email,
+        // userId: userId,
+        token: token,
+        isLoggedIn: userIsLoggedIn,
+        login: loginHandler,
+        logout: logoutHandler,
+        // setUserEmail: setUserEmail,
+        // nowSetUserId: nowSetUserId,
+        // removeAdmin:removeAdmin
+      }}
+    >
       {props.children}
     </AuthContext.Provider>
   );

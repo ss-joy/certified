@@ -36,8 +36,8 @@ export default function Login() {
       if (responseData.isAdmin) {
         authCtx.setAdmin(true);
       }
-      authCtx.nowSetUserId(responseData.userId);
-      authCtx.setUserEmail(responseData.email);
+      // authCtx.nowSetUserId(responseData.userId);
+      // authCtx.setUserEmail(responseData.email);
       navigate("/");
       alert("You have successfully logged in");
     } else {
