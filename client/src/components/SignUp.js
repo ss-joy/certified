@@ -103,6 +103,10 @@ export default function SignUp() {
             onChange={handleRegChange}
           />
         </div>
+        <div>
+          <label htmlFor="photo"></label>
+          <input type="file" id="photo" name="photo" accept="image/*" />
+        </div>
         <button>Sign Up</button>
       </form>
       <section id="info">

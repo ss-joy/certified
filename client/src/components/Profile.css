@@ -38,3 +38,11 @@
 #profile #profile-btn:hover {
   background-color: rgb(125, 29, 214);
 }
+#user-details #admin {
+  text-align: center;
+  background-color: rgb(205, 165, 243);
+  width: 150px;
+  margin: 0 auto;
+  border-radius: 5px;
+  padding: 3px;
+}

@@ -33,11 +33,9 @@ async function getAdminDetails(req, res) {
   try {
     const { authorization } = req.headers;
     const adminId = req.params.id;
-    // console.log(adminId);
     const token = authorization.split(" ")[1];
     const decoded = jwt.verify(token, "superdupersecret");
     const adminDetails = await Admin.findOne({ _id: adminId });
-    console.log(adminDetails);
 
     res.json({
       name: adminDetails.name,

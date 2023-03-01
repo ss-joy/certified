@@ -3,10 +3,11 @@ import temp from "../assets/sust.png";
 import AuthContext from "../contexts/auth-context";
 import "./Profile.css";
 export default function Profile() {
-  const [adminName, setAdminName] = useState("");
-
-  const [adminMobile, setAdminMobile] = useState("");
-  const [adminEmail, setAdminEmail] = useState("");
+  const [admin, setAdmin] = useState({
+    name: "",
+    mobile: "",
+    email: "",
+  });
 
   const authCtx = useContext(AuthContext);
 
@@ -34,9 +35,11 @@ export default function Profile() {
     );
     const responseData = await response.json();
     const { name, email, mobile } = responseData;
-    setAdminEmail(email);
-    setAdminMobile(mobile);
-    setAdminName(name);
+    setAdmin({
+      name: name,
+      email: email,
+      mobile: mobile,
+    });
   }, [authCtx.token, authCtx.currentUserId]);
   const isUserAdmin = authCtx.isAdmin === "true" || authCtx.isAdmin === true;
 
@@ -61,14 +64,16 @@ export default function Profile() {
   );
   const adminContent = (
     <ul>
-      <li>Name:{adminName}</li>
-      <li>Phone No:{adminMobile}</li>
-      <li>Email:{adminEmail}</li>
+      <li>Name: {admin.name}</li>
+      <li>Phone No: {admin.mobile}</li>
+      <li>Email: {admin.email}</li>
     </ul>
   );
   const adminMsg = (
     <article>
-      Welcome {adminName} You are a part of the admin panel. Admins are granted
+      <br />
+      <br />
+      Welcome {admin.name} You are a part of the admin panel. Admins are granted
       with the most important tasks here. These are the information we have
       about you.
     </article>
@@ -79,6 +84,7 @@ export default function Profile() {
         <img src={temp} alt="" />
       </section>
       <section id="user-details">
+        {isUserAdmin && <p id="admin">Welcome to the admin panel</p>}
         {!isUserAdmin && studentContent}
         {isUserAdmin && adminContent}
         {isUserAdmin && adminMsg}
