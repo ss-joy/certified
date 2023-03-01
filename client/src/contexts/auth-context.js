@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 const AuthContext = React.createContext({
-  isAdmin: false,
+  isAdmin: "",
   setAdmin: () => {},
 
   // email: "",
@@ -16,15 +16,18 @@ const AuthContext = React.createContext({
 
 export const AuthContextProvider = (props) => {
   const initialToken = localStorage.getItem("token");
+  const initialIsAdminStatus = localStorage.getItem("userIsAdmin");
+  console.log("admin", initialIsAdminStatus);
   const [token, setToken] = useState(initialToken);
   // const [email, setEmail] = useState(null);
   // const [userId, setuserId] = useState(null);
-  const [isAdmin, setIsAdmin] = useState(false);
+  const [isAdmin, setIsAdmin] = useState(initialIsAdminStatus);
 
   const userIsLoggedIn = !!token;
   const logoutHandler = () => {
     setToken(null);
     localStorage.removeItem("token");
+    localStorage.removeItem("userIsAdmin");
   };
   const loginHandler = (token) => {
     setToken(token);
@@ -39,6 +42,7 @@ export const AuthContextProvider = (props) => {
   // };
   const setAdmin = () => {
     setIsAdmin(true);
+    localStorage.setItem("userIsAdmin", "true");
     // localStorage.setItem()
   };
   // const removeAdmin=()=>{
@@ -49,7 +53,7 @@ export const AuthContextProvider = (props) => {
     <AuthContext.Provider
       value={{
         isAdmin: isAdmin,
-        setAdmin: setIsAdmin,
+        setAdmin: setAdmin,
         // email: email,
         // userId: userId,
         token: token,

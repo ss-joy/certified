@@ -3,7 +3,7 @@ import "./App.css";
 import Header from "./components/Header";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
-import Footer from "./components/Footer";
+// import Footer from "./components/Footer";
 import Profile from "./components/Profile";
 import { Route, Routes } from "react-router-dom";
 import AuthContext from "./contexts/auth-context";
@@ -11,6 +11,7 @@ import sadUser from "./assets/notloggedin.png";
 import pageNotFound from "./assets/page-not-found.jpg";
 export default function App() {
   const authCtx = useContext(AuthContext);
+  console.log(authCtx);
   return (
     <div className="app">
       {authCtx.token}

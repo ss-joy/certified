@@ -34,7 +34,7 @@ export default function Login() {
       // authCtx.login(responseData.token, expirationTime.toISOString());
       authCtx.login(responseData.token);
       if (responseData.isAdmin) {
-        authCtx.setAdmin(true);
+        authCtx.setAdmin();
       }
       // authCtx.nowSetUserId(responseData.userId);
       // authCtx.setUserEmail(responseData.email);

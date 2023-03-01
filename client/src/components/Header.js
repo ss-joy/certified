@@ -8,7 +8,9 @@ export default function Header() {
   function handleLogout() {
     authCtx.logout();
   }
-  const showAdminPanel = authCtx.isAdmin && authCtx.isLoggedIn;
+  const showAdminPanel =
+    (authCtx.isAdmin === "true" || authCtx.isAdmin === true) &&
+    authCtx.isLoggedIn;
   return (
     <header>
       <div id="logo">
