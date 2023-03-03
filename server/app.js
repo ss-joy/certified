@@ -30,7 +30,13 @@ app.use(express.json());
 app.use(studentRoutes);
 app.use(adminRoute);
 app.use(authRoutes);
-
+app.use((err, req, res, next) => {
+  if (req.file) {
+    fs.unlink(req.file.path, (err) => {
+      console.log(err);
+    });
+  }
+});
 mongoose.set("strictQuery", false);
 mongoose
   .connect(

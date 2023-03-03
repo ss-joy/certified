@@ -4,6 +4,8 @@ const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
 
 async function signupUser(req, res) {
+  // console.log(req.body);
+  // console.log(req.file);
   const { reg, email, password } = req.body;
   const userExists = await Student.find({ email: email });
   if (userExists.length != 0) {

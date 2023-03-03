@@ -3,23 +3,24 @@ import "./App.css";
 import Header from "./components/Header";
 import Login from "./components/Login";
 import SignUp from "./components/SignUp";
-// import Footer from "./components/Footer";
+import Footer from "./components/Footer";
 import Profile from "./components/Profile";
 import { Route, Routes } from "react-router-dom";
 import AuthContext from "./contexts/auth-context";
 import sadUser from "./assets/notloggedin.png";
 import pageNotFound from "./assets/page-not-found.jpg";
+import AddResult from "./components/AddResult";
 export default function App() {
   const authCtx = useContext(AuthContext);
   return (
     <div className="app">
-      {authCtx.token}
       <Header />
       <Routes>
         <Route path="/" element={<h1>ok</h1>} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/about" element={<p>abt</p>} />
+        <Route path="/admin" element={<AddResult />} />
 
         <Route
           path="/profile"
@@ -48,7 +49,7 @@ export default function App() {
           }
         />
       </Routes>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   );
 }

@@ -126,3 +126,10 @@ label {
   padding: 2px;
   width: 300px;
 }
+#signup-form #img-preview {
+  height: 100px;
+}
+#signup-form #preview-img-container {
+  margin-top: 10px;
+  text-align: center;
+}

@@ -1,0 +1,22 @@
+#add-result h3 {
+  text-align: center;
+  padding: 0.4rem;
+  width: 500px;
+  margin: 0 auto;
+  margin-top: 0.6rem;
+  border-radius: 6px;
+  color: white;
+  background-color: rgb(87, 218, 87);
+}
+#add-result #all-container {
+  margin: 20px auto;
+  display: flex;
+}
+#all-container {
+  width: 90%;
+  border-radius: 6px;
+  box-shadow: 3px 3px 10px rgb(187, 133, 238);
+  padding: 20px;
+  margin: 20px auto;
+  background-color: #d671f5;
+}

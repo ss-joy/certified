@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./SignUp.css";
 export default function SignUp() {
   const [password, setPassword] = useState("");
@@ -6,7 +6,18 @@ export default function SignUp() {
   const [email, setEmail] = useState("");
   const [reg, setReg] = useState("");
   const [signUpHasError, setSignUpHasError] = useState(false);
-
+  const [file, setFile] = useState(null);
+  const [previewUrl, setPreviewUrl] = useState(null);
+  useEffect(() => {
+    if (!file) {
+      return;
+    }
+    const fileReader = new FileReader();
+    fileReader.onload = () => {
+      setPreviewUrl(fileReader.result);
+    };
+    fileReader.readAsDataURL(file);
+  }, [file]);
   function handleEmailChange(e) {
     setEmail(e.target.value);
   }
@@ -20,13 +31,14 @@ export default function SignUp() {
     setReg(e.target.value);
   }
 
-  async function sendSignupRequest(studentInfo) {
+  async function sendSignupRequest(data) {
     const response = await fetch("http://localhost:5000/api/signup", {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(studentInfo),
+      data,
+      // headers: {
+      //   "Content-Type": "application/json",
+      // },
+      // body: JSON.stringify(studentInfo),
     });
     if (response.status >= 200 && response.status < 300) {
       alert("You have successfully signed up");
@@ -40,13 +52,28 @@ export default function SignUp() {
   }
   function handleSubmit(e) {
     e.preventDefault();
-    const studentInfo = {
-      reg,
-      password,
-      email,
-    };
+    console.log(reg, password, file);
+    // const studentInfo = {
+    //   reg,
+    //   password,
+    //   email,
+    // };
 
-    sendSignupRequest(studentInfo);
+    // sendSignupRequest(studentInfo);
+    const data = new FormData();
+    data.append("reg", reg);
+    data.append("password", password);
+    data.append("email", email);
+    data.append("image", file);
+    // // console.log(file);
+    // // console.log(formData);for
+    sendSignupRequest(data);
+  }
+  function filePicked(e) {
+    if (e.target.files || e.target.files.length === 1) {
+      const pickedFile = e.target.files[0];
+      setFile(pickedFile);
+    }
   }
   return (
     <div id="signup-form">
@@ -55,7 +82,7 @@ export default function SignUp() {
           Signup failed!!!Please recheck your credentials!!
         </span>
       )}
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} encType="multipart/form-data">
         <div>
           <label htmlFor="email">Enter email</label>
           <input
@@ -104,9 +131,21 @@ export default function SignUp() {
           />
         </div>
         <div>
-          <label htmlFor="photo"></label>
-          <input type="file" id="photo" name="photo" accept="image/*" />
+          <label htmlFor="photo">Pick an image for you</label>
+          <input
+            type="file"
+            id="photo"
+            name="image"
+            accept="image/*"
+            onChange={filePicked}
+          />
         </div>
+        {previewUrl && (
+          <div id="preview-img-container">
+            <img id="img-preview" src={previewUrl} alt="" />
+          </div>
+        )}
+
         <button>Sign Up</button>
       </form>
       <section id="info">
