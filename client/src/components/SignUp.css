@@ -5,6 +5,7 @@
   border-radius: 8px;
   box-shadow: 3px 3px 14px rgb(107, 219, 107);
   width: 25rem;
+  background-color: white;
 }
 #signp-from input,
 label {

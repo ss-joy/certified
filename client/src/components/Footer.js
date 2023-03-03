@@ -2,7 +2,6 @@ import React from "react";
 import "./Footer.css";
 import logo from "../assets/sust.png";
 import fb from "../assets/fb.png";
-import whatsapp from "../assets/whatsapp.gif";
 
 export default function Footer() {
   return (
@@ -14,29 +13,31 @@ export default function Footer() {
 
         <section>
           About Developers:
-          <ul>
+          <ul style={{ marginTop: "10px" }}>
             <li>Md. Sakil Sazzad Joy</li>
             <li>Abdullah Khan anan</li>
           </ul>
         </section>
         <section>
           Contact:
-          <ul>
+          <ul id="contacts">
             <li>
-              <a href="https://www.facebook.com/profile.php?id=100080048493810">
+              <a
+                href="https://www.facebook.com/profile.php?id=100080048493810"
+                target={"_blank"}
+                rel="noreferrer"
+              >
                 <img src={fb} alt="" />
               </a>
             </li>
             <li>
-              <a href="https://www.facebook.com/profile.php?id=100029830907250">
+              <a
+                href="https://www.facebook.com/profile.php?id=100029830907250"
+                target={"_blank"}
+                rel="noreferrer"
+              >
                 <img src={fb} alt="" />
               </a>
-            </li>
-            <li>
-              <img src={whatsapp} alt="" />
-            </li>
-            <li>
-              <img src={whatsapp} alt="" />
             </li>
           </ul>
         </section>

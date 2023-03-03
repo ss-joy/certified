@@ -1,14 +1,14 @@
 #footer {
   background-color: rgb(31, 25, 25);
   color: white;
-  /* position: fixed;
-  bottom: 0;
-  left: 0; */
 }
 #footer-section-container {
   padding: 15px;
   display: flex;
   justify-content: space-around;
+}
+#footer-section-container section {
+  padding: 20px;
 }
 #footer-section-container img {
   height: 70px;
@@ -18,4 +18,12 @@
 }
 #footer-section-container ul {
   list-style: none;
+}
+#footer #contacts {
+  display: flex;
+  justify-content: space-between;
+}
+#footer #contacts img {
+  height: 30px;
+  margin: 5px;
 }

@@ -2,6 +2,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  font-family: "Oxygen", sans-serif;
 }
 
 /* main {
@@ -33,4 +34,14 @@
   background-color: rgb(241, 131, 241);
   width: 500px;
   color: white;
+}
+.app {
+  background: rgb(251, 251, 251);
+  background: linear-gradient(
+    90deg,
+    rgba(251, 251, 251, 1) 0%,
+    rgba(190, 245, 244, 1) 42%,
+    rgba(207, 240, 194, 1) 77%,
+    rgba(243, 249, 247, 1) 91%
+  );
 }

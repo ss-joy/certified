@@ -1,0 +1,62 @@
+#home-container {
+  margin: 15px;
+  padding: 10px;
+  border-radius: 10px;
+}
+#home-container section {
+  margin-bottom: 30px;
+  padding: 30px;
+  font-family: "Niramit", sans-serif;
+  font-family: "Roboto", sans-serif;
+  display: flex;
+  font-weight: 500;
+  line-height: 30px;
+  border-radius: 13px;
+
+  background: rgb(251, 251, 251);
+  background: linear-gradient(
+    90deg,
+    rgba(251, 251, 251, 1) 0%,
+    rgba(235, 195, 220, 1) 45%,
+    rgba(142, 206, 219, 1) 97%
+  );
+}
+#home-container section img {
+  margin-top: 20px;
+  margin-left: 20px;
+  margin-right: 20px;
+
+  height: 20rem;
+  border-top-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+}
+#home-container #section2 {
+  background: rgb(251, 251, 251);
+  background: linear-gradient(
+    90deg,
+    rgba(251, 251, 251, 1) 0%,
+    rgba(47, 187, 215, 1) 20%,
+    rgba(232, 123, 220, 1) 38%,
+    rgba(205, 240, 247, 1) 83%
+  );
+}
+#home-container #section4 {
+  background: rgb(247, 175, 255);
+  background: linear-gradient(
+    90deg,
+    rgba(247, 175, 255, 1) 0%,
+    rgba(208, 247, 247, 1) 42%,
+    rgba(174, 235, 238, 1) 77%,
+    rgba(243, 249, 247, 1) 91%
+  );
+}
+#home-container #section3 {
+  background: rgb(247, 175, 255);
+  background: linear-gradient(
+    90deg,
+    rgba(247, 175, 255, 1) 0%,
+    rgba(85, 232, 232, 1) 42%,
+    rgba(174, 188, 238, 1) 77%,
+    rgba(243, 249, 247, 1) 91%
+  );
+}
