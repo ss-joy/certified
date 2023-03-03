@@ -1,17 +1,18 @@
 #home-container {
   margin: 15px;
-  padding: 10px;
+  padding: 20px;
   border-radius: 10px;
 }
 #home-container section {
   margin-bottom: 30px;
-  padding: 30px;
+  padding: 50px;
   font-family: "Niramit", sans-serif;
   font-family: "Roboto", sans-serif;
   display: flex;
   font-weight: 500;
   line-height: 30px;
   border-radius: 13px;
+  box-shadow: 3px 3px 10px rgb(128, 128, 209);
 
   background: rgb(251, 251, 251);
   background: linear-gradient(

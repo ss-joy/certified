@@ -11,6 +11,7 @@ import AuthContext from "./contexts/auth-context";
 import sadUser from "./assets/notloggedin.png";
 import pageNotFound from "./assets/page-not-found.jpg";
 import AddResult from "./components/AddResult";
+import About from "./components/About";
 export default function App() {
   const authCtx = useContext(AuthContext);
   return (
@@ -20,7 +21,7 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/about" element={<p>abt</p>} />
+        <Route path="/about" element={<About />} />
         <Route path="/admin" element={<AddResult />} />
 
         <Route
