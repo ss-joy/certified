@@ -10,7 +10,7 @@ import { Route, Routes } from "react-router-dom";
 import AuthContext from "./contexts/auth-context";
 import sadUser from "./assets/notloggedin.png";
 import pageNotFound from "./assets/page-not-found.jpg";
-import AddResult from "./components/AddResult";
+import StudentControl from "./components/StudentControl";
 import About from "./components/About";
 export default function App() {
   const authCtx = useContext(AuthContext);
@@ -22,7 +22,7 @@ export default function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/about" element={<About />} />
-        <Route path="/admin" element={<AddResult />} />
+        <Route path="/admin" element={<StudentControl />} />
 
         <Route
           path="/profile"

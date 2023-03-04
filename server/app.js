@@ -36,6 +36,7 @@ app.use((err, req, res, next) => {
       console.log(err);
     });
   }
+  next(err);
 });
 mongoose.set("strictQuery", false);
 mongoose
