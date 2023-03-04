@@ -40,13 +40,11 @@ export default function Login() {
       // authCtx.nowSetUserId(responseData.userId);
       // authCtx.setUserEmail(responseData.email);
       navigate("/");
-      alert("You have successfully logged in");
     } else {
       setDidLoginFailed(true);
       setTimeout(() => {
         setDidLoginFailed(false);
       }, 2000);
-      alert("Something went wrong");
     }
   }
   function handleSubmit(e) {

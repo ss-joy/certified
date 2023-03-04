@@ -20,25 +20,21 @@ const AllStudents = require("../models/all-students");
 async function enterNewStudent(req, res, next) {
   try {
     const { enteredRegNo } = req.body;
-    const studentAlreadyExists = await AllStudents.findOne({
-      reg: enteredRegNo,
-    });
-    if (studentAlreadyExists) {
-      return res.json({
-        msg: "student already exists",
+    const studentFound = await AllStudents.findOne({ reg: enteredRegNo });
+    if (studentFound) {
+      return res.send({
+        msg: `This student with registration number ${enteredRegNo} is already registered`,
       });
     }
-    const Student = new AllStudents({
+    const student = new AllStudents({
       reg: enteredRegNo,
     });
-    const response = await Student.save({
-      // vali
+    const rsp = await student.save({ validationBeforeSave: true });
+    res.send({
+      msg: `Student with a registration number of ${rsp.reg} has been registred!`,
     });
-    return res.status(200).json({
-      msg: `You successfully added a student with ${response.reg} registration number`,
-    });
-  } catch (e) {
-    next(e);
+  } catch (err) {
+    next(err);
   }
 }
 module.exports = {

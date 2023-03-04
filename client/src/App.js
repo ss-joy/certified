@@ -22,7 +22,21 @@ export default function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/about" element={<About />} />
-        <Route path="/admin" element={<StudentControl />} />
+        <Route
+          path="/admin"
+          element={
+            authCtx.isLoggedIn && authCtx.isAdmin ? (
+              <StudentControl />
+            ) : (
+              <section id="not-logged-in">
+                <img src={sadUser} id="not-logged-in-img" alt="" />
+
+                <article>Sorry you are not logged in as admin.</article>
+                <article>Log in to view the student controller page</article>
+              </section>
+            )
+          }
+        />
 
         <Route
           path="/profile"

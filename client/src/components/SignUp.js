@@ -121,10 +121,10 @@ export default function SignUp() {
         <div>
           <label htmlFor="reg">Enter your reg no</label>
           <input
-            min={500}
+            minLength={10}
             placeholder="Enter your registration number"
             required
-            type="number"
+            type="text"
             id="red"
             value={reg}
             onChange={handleRegChange}
