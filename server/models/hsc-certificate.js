@@ -10,27 +10,25 @@ const hscCertificateSchema = new mongoose.Schema({
   mother: {
     type: String,
   },
-  college: {
+  institution: {
+    type: String,
+  },
+  centre: {
     type: String,
   },
   reg: {
     type: String,
   },
-  roll: {
-    type: String,
-  },
-  board: {
-    type: String,
-  },
+
   group: string,
-  gpa: String,
-  birthday: String,
+
   bangla: String,
   english: String,
   physics: String,
   Chemistry: String,
   higherMath: String,
   biology: String,
+  ict: String,
 });
 
 module.exports = mongoose.model("HscCertificate", hscCertificateSchema);

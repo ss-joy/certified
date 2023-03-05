@@ -1,0 +1,16 @@
+#certi {
+  border: 2px solid black;
+  padding: 30px;
+  margin: 30px;
+  background-color: white;
+}
+#certi ul {
+  list-style: none;
+}
+#certi-student-header {
+  text-align: center;
+  margin-bottom: 30px;
+}
+#certi-student-info {
+  margin-bottom: 30px;
+}

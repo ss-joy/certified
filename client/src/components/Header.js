@@ -39,16 +39,17 @@ export default function Header() {
           <li>
             <NavLink to={"/about"}>About</NavLink>
           </li>
+
+          {authCtx.isLoggedIn && (
+            <li>
+              <NavLink to={"/profile"}>Profile</NavLink>
+            </li>
+          )}
           {authCtx.isLoggedIn && (
             <li>
               <button id="logout" onClick={handleLogout}>
                 Log Out
               </button>
-            </li>
-          )}
-          {authCtx.isLoggedIn && (
-            <li>
-              <NavLink to={"/profile"}>Profile</NavLink>
             </li>
           )}
         </ul>

@@ -12,6 +12,8 @@ import sadUser from "./assets/notloggedin.png";
 import pageNotFound from "./assets/page-not-found.jpg";
 import StudentControl from "./components/StudentControl";
 import About from "./components/About";
+import Certificate from "./components/Certificate";
+
 export default function App() {
   const authCtx = useContext(AuthContext);
   return (
@@ -21,7 +23,9 @@ export default function App() {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
-        <Route path="/about" element={<About />} />
+        <Route path="/about" element={<Certificate />} />
+        {/* <Route path="/about" element={<About />} /> */}
+
         <Route
           path="/admin"
           element={
