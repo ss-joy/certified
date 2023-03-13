@@ -1,6 +1,51 @@
-import React from "react";
+import React, { useContext, useEffect, useState } from "react";
 import "./Certificate.css";
+import AuthContext from "../contexts/auth-context";
+
 export default function Certificate() {
+  const authCtx = useContext(AuthContext);
+  const [name, setName] = useState(null);
+  const [fName, setFName] = useState(null);
+  const [mName, setMName] = useState(null);
+
+  const [insName, setInsName] = useState(null);
+  const [center, setcenter] = useState(null);
+  const [reg, setReg] = useState(null);
+  const [group, setGroup] = useState(null);
+  const [bangla, setBangla] = useState(null);
+  const [eng, setEng] = useState(null);
+  const [ict, setIct] = useState(null);
+  const [phy, setPhy] = useState(null);
+  const [chem, setChem] = useState(null);
+  const [math, setMath] = useState(null);
+  const [bio, setBio] = useState(null);
+  async function getCerti() {
+    const resp = await fetch(`http://localhost:5000/api/get-certificate`, {
+      headers: {
+        Authorization: `Bearer ${authCtx.token}`,
+      },
+    });
+    const paresdResponse = await resp.json();
+    const results = paresdResponse.resp;
+    console.log(results);
+    setName(results.name);
+    setBangla(results.bangla);
+    setBio(results.biology);
+    setChem(results.Chemistry);
+    setFName(results.father);
+    setMName(results.mother);
+    setPhy(results.physics);
+    setMath(results.higherMath);
+    setEng(results.english);
+    setIct(results.ict);
+    setGroup(results.group);
+    setInsName(results.institution);
+    setcenter(results.centre);
+    setReg(results.reg);
+  }
+  useEffect(() => {
+    getCerti();
+  }, []);
   return (
     <div id="certi">
       <section id="certi-student-header">
@@ -11,13 +56,13 @@ export default function Certificate() {
       </section>
       <section id="certi-student-info">
         <ul>
-          <li>Name of the student :</li>
-          <li>Father's Name :</li>
-          <li>Mother's Name: </li>
-          <li>Name of the Institution: </li>
-          <li>Name of Centre</li>
-          <li>Reg No: </li>
-          <li>Group: </li>
+          <li>Name of the student :{name}</li>
+          <li>Father's Name :{fName}</li>
+          <li>Mother's Name: {mName}</li>
+          <li>Name of the Institution: {insName}</li>
+          <li>Name of Centre: {center}</li>
+          <li>Reg No: {reg}</li>
+          <li>Group: {group}</li>
         </ul>
       </section>
       <section id="cert-student-result">
@@ -38,7 +83,7 @@ export default function Certificate() {
               <td>1</td>
               <td>Bangla</td>
               <td></td>
-              <td></td>
+              <td>{bangla}</td>
               <td></td>
               <td></td>
               <td></td>
@@ -47,7 +92,7 @@ export default function Certificate() {
               <td>2</td>
               <td>English</td>
               <td></td>
-              <td></td>
+              <td>{eng}</td>
               <td></td>
               <td></td>
               <td></td>
@@ -56,7 +101,7 @@ export default function Certificate() {
               <td>3</td>
               <td>Informations and Communicaton Technology</td>
               <td></td>
-              <td></td>
+              <td>{ict}</td>
               <td></td>
               <td></td>
               <td></td>
@@ -65,7 +110,7 @@ export default function Certificate() {
               <td>4</td>
               <td>Physics</td>
               <td></td>
-              <td></td>
+              <td>{phy}</td>
               <td></td>
               <td></td>
               <td></td>
@@ -74,7 +119,7 @@ export default function Certificate() {
               <td>5</td>
               <td>Chemistry</td>
               <td></td>
-              <td></td>
+              <td>{chem}</td>
               <td></td>
               <td></td>
               <td></td>
@@ -83,7 +128,7 @@ export default function Certificate() {
               <td>6</td>
               <td>Higher Mathmatics</td>
               <td></td>
-              <td></td>
+              <td>{math}</td>
               <td></td>
               <td></td>
               <td></td>
@@ -92,7 +137,7 @@ export default function Certificate() {
               <td>7</td>
               <td>Biology</td>
               <td></td>
-              <td></td>
+              <td>{bio}</td>
               <td></td>
               <td></td>
               <td></td>
@@ -100,8 +145,6 @@ export default function Certificate() {
           </tbody>
         </table>
       </section>
-
-      <p>Date of publication of result:</p>
     </div>
   );
 }

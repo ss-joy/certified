@@ -39,7 +39,11 @@ export default function Header() {
           <li>
             <NavLink to={"/about"}>About</NavLink>
           </li>
-
+          {authCtx.isLoggedIn && (
+            <li>
+              <NavLink to={"/certifiate"}>Certificate</NavLink>
+            </li>
+          )}
           {authCtx.isLoggedIn && (
             <li>
               <NavLink to={"/profile"}>Profile</NavLink>

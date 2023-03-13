@@ -8,5 +8,6 @@ router.post(
   "/api/student/enter-new-student",
   studentController.enterNewStudent
 );
-
+router.post("/api/save-certificate", studentController.saveCertificate);
+router.get("/api/get-certificate", studentController.getCerti);
 module.exports = router;

@@ -2,6 +2,7 @@ const Student = require("../models/student");
 const Admin = require("../models/admin");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const allStdents = require("../models/all-students");
 
 async function signupUser(req, res) {
   // console.log(req.body);
@@ -82,10 +83,15 @@ async function loginUser(req, res) {
       msg: "Authentication failed",
     });
   }
+  const studentMailFound = await allStdents.findOne({ mail: email });
+  // console.log(studentMailFound);
+  // console.log(studentMailFound.reg);
+
   jwtToken = jwt.sign(
     {
       userEmail: studentFound.email,
       userId: studentFound.id,
+      reg: studentFound.reg,
     },
     "superdupersecret",
     {

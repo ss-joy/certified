@@ -20,7 +20,7 @@ const hscCertificateSchema = new mongoose.Schema({
     type: String,
   },
 
-  group: string,
+  group: String,
 
   bangla: String,
   english: String,

@@ -4,5 +4,6 @@ const allStudentsSchema = mongoose.Schema({
     type: String,
     required: true,
   },
+  mail: String,
 });
 module.exports = mongoose.model("allStudents", allStudentsSchema);
