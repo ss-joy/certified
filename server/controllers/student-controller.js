@@ -49,56 +49,62 @@ async function enterNewStudent(req, res, next) {
   }
 }
 async function saveCertificate(req, res) {
-  const {
-    name,
-    fName,
-    mName,
-    insName,
-    center,
-    reg,
-    group,
-    bangla,
-    eng,
-    ict,
-    phy,
-    chem,
-    math,
-    bio,
-  } = req.body;
-  // console.log(
-  //   name,
-  //   fName,
-  //   mName,
-  //   insName,
-  //   center,
-  //   reg,
-  //   group,
-  //   bangla,
-  //   eng,
-  //   ict,
-  //   phy,
-  //   chem,
-  //   math,
-  //   bio
-  // );
-  const Hsc = new hscCrtificate({
-    name: name,
-    father: fName,
-    mother: mName,
-    institution: insName,
-    centre: center,
-    reg: reg,
-    group: group,
-    bangla: bangla,
-    english: eng,
-    ict: ict,
-    physics: phy,
-    Chemistry: chem,
-    higherMath: math,
-    biology: bio,
-  });
-  const rsp = await Hsc.save();
-  res.json({ msg: "student has been saved on our system" });
+  try {
+    const {
+      name,
+      fName,
+      mName,
+      insName,
+      center,
+      reg,
+      group,
+      bangla,
+      eng,
+      ict,
+      phy,
+      chem,
+      math,
+      bio,
+    } = req.body;
+    // console.log(
+    //   name,
+    //   fName,
+    //   mName,
+    //   insName,
+    //   center,
+    //   reg,
+    //   group,
+    //   bangla,
+    //   eng,
+    //   ict,
+    //   phy,
+    //   chem,
+    //   math,
+    //   bio
+    // );
+    const Hsc = new hscCrtificate({
+      name: name,
+      father: fName,
+      mother: mName,
+      institution: insName,
+      centre: center,
+      reg: reg,
+      group: group,
+      bangla: bangla,
+      english: eng,
+      ict: ict,
+      physics: phy,
+      Chemistry: chem,
+      higherMath: math,
+      biology: bio,
+    });
+    const rsp = await Hsc.save();
+    res.json({
+      msg: "student certificate data has been successfully saved on our system",
+    });
+  } catch (e) {
+    next(e);
+  }
 }
 
 module.exports = {

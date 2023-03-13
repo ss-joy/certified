@@ -9,21 +9,27 @@ export default function StudentControl() {
   const [isLoading, setIsLoading] = useState(false);
   const [studentMail, setStudentMail] = useState("");
   //all certificate code
-  const [name, setName] = useState(null);
-  const [fName, setFName] = useState(null);
-  const [mName, setMName] = useState(null);
+  const [name, setName] = useState("");
+  const [fName, setFName] = useState("");
+  const [mName, setMName] = useState("");
 
-  const [insName, setInsName] = useState(null);
-  const [center, setcenter] = useState(null);
-  const [reg, setReg] = useState(null);
-  const [group, setGroup] = useState(null);
-  const [bangla, setBangla] = useState(null);
-  const [eng, setEng] = useState(null);
-  const [ict, setIct] = useState(null);
-  const [phy, setPhy] = useState(null);
-  const [chem, setChem] = useState(null);
-  const [math, setMath] = useState(null);
-  const [bio, setBio] = useState(null);
+  const [insName, setInsName] = useState("");
+  const [center, setcenter] = useState("");
+  const [reg, setReg] = useState("");
+  const [group, setGroup] = useState("");
+  const [bangla, setBangla] = useState("");
+  const [eng, setEng] = useState("");
+  const [ict, setIct] = useState("");
+  const [phy, setPhy] = useState("");
+  const [chem, setChem] = useState("");
+  const [math, setMath] = useState("");
+  const [bio, setBio] = useState("");
+  //certificate saved on server related code
+  const [certificateSaveWasSucessfull, setCertificateSaveWasSucessfull] =
+    useState(false);
+  const [certificateSaveWasSucessfullMsg, setCertificateSaveWasSucessfullMsg] =
+    useState("");
+
   function handleStudentMainChange(e) {
     setStudentMail(e.target.value);
   }
@@ -77,19 +83,22 @@ export default function StudentControl() {
         "Content-Type": "application/json",
       },
     });
-    // setIsLoading(true);
-    // if (response.status >= 200 && response.status < 300) {
-    //   const parsedResponse = await response.json();
-    //   setStudentSearchResponse(parsedResponse.msg);
-    //   setIsLoading(false);
-    //   setPrompt(true);
-    //   setTimeout(() => {
-    //     setPrompt(false);
-    //   }, 5000);
-    // } else {
-    //   console.log("error");
-    // }
-    console.log(response);
+    setIsLoading(true);
+
+    if (response.status >= 200 && response.status < 300) {
+      const parsedResponse = await response.json();
+      console.log(parsedResponse);
+      setCertificateSaveWasSucessfull(true);
+      setIsLoading(false);
+
+      setCertificateSaveWasSucessfullMsg(parsedResponse.msg);
+      setTimeout(() => {
+        setCertificateSaveWasSucessfull(false);
+      }, 5000);
+    } else {
+      console.log("error");
+      setIsLoading(false);
+    }
   }
   function handleCertificate(e) {
     e.preventDefault();
@@ -101,13 +110,13 @@ export default function StudentControl() {
       center,
       reg,
       group,
-      bangla,
-      eng,
-      ict,
-      phy,
-      chem,
-      math,
-      bio,
+      bangla: +bangla,
+      eng: +eng,
+      ict: +ict,
+      phy: +phy,
+      chem: +chem,
+      math: +math,
+      bio: +bio,
     };
     saveCertificate(cert);
   }
@@ -204,67 +213,100 @@ export default function StudentControl() {
 
       {enterResult && (
         <section>
-          {prompt && responsePrompt}
+          {certificateSaveWasSucessfull && (
+            <p style={{ backgroundColor: "white" }}>
+              {certificateSaveWasSucessfullMsg}
+            </p>
+          )}
           <form onSubmit={handleCertificate}>
-            <div>
-              <label htmlFor="">Name of the student :</label>
-              <input type="text" value={name} onChange={handleName} />
-            </div>
-            <div>
-              <label htmlFor="">Father's Name :</label>
-              <input type="text" value={fName} onChange={handleFName} />
-            </div>
-            <div>
-              <label htmlFor="">Mother's Name:</label>
-              <input type="text" value={mName} onChange={handleMName} />
-            </div>
-            <div>
-              <label htmlFor="">Name of the Institution:</label>
-              <input type="text" value={insName} onChange={handleInsName} />
-            </div>
-            <div>
-              <label htmlFor="">Name of Centre</label>
-              <input type="text" value={center} onChange={handleCenter} />
-            </div>
-            <div>
-              <label htmlFor="">Reg No:</label>
-              <input type="text" value={reg} onChange={handleReg} />
-            </div>
-            <div>
-              <label htmlFor="">Group:</label>
-              <input type="text" value={group} onChange={handleGroup} />
-            </div>
-            <div>
-              <label htmlFor="">Bangla</label>
-              <input type="text" value={bangla} onChange={handleBangla} />
-            </div>
-            <div>
-              <label htmlFor=""> English</label>
-              <input type="text" value={eng} onChange={handleEng} />
-            </div>
-            <div>
-              <label htmlFor="">Informations and Communicaton Technology</label>
-              <input type="text" value={ict} onChange={handleIct} />
-            </div>
-            <div>
-              <label htmlFor=""> Physics</label>
-              <input type="text" value={phy} onChange={handlePhye} />
-            </div>
-            <div>
-              <label htmlFor="">Chemistry</label>
-              <input type="text" value={chem} onChange={handleChem} />
-            </div>
-            <div>
-              <label htmlFor=""> Higher Mathmatics</label>
-              <input type="text" value={math} onChange={handleMath} />
-            </div>
-            <div>
-              <label htmlFor=""> Biology</label>
-              <input type="text" value={bio} onChange={handleBio} />
-            </div>
-
-            <div>
-              <button>Submit</button>
+            <section id="student-certificate-form-holder">
+              <section>
+                <div>
+                  <label htmlFor="">Name of the student :</label>
+                  <input type="text" value={name} onChange={handleName} />
+                </div>
+                <div>
+                  <label htmlFor="">Father's Name :</label>
+                  <input type="text" value={fName} onChange={handleFName} />
+                </div>
+                <div>
+                  <label htmlFor="">Mother's Name:</label>
+                  <input type="text" value={mName} onChange={handleMName} />
+                </div>
+                <div>
+                  <label htmlFor="">Name of the Institution:</label>
+                  <input type="text" value={insName} onChange={handleInsName} />
+                </div>
+                <div>
+                  <label htmlFor="">Name of Centre</label>
+                  <input type="text" value={center} onChange={handleCenter} />
+                </div>
+                <div>
+                  <label htmlFor="reg">Reg No:</label>
+                  <input
+                    type="text"
+                    value={reg}
+                    id="reg"
+                    onChange={handleReg}
+                  />
+                </div>
+                <div>
+                  <label htmlFor="group">Group:</label>
+                  {/* <input type="text" value={group} onChange={handleGroup} /> */}
+                  <select
+                    value={group}
+                    onChange={handleGroup}
+                    style={{ width: "70%", margin: "6px" }}
+                    name=""
+                    id="group"
+                  >
+                    <option>Science</option>
+                    <option>Arts</option>
+                    <option>Commerce</option>
+                  </select>
+                </div>
+              </section>
+              <section>
+                <div>
+                  <label htmlFor="">Bangla</label>
+                  <input type="number" value={bangla} onChange={handleBangla} />
+                </div>
+                <div>
+                  <label htmlFor=""> English</label>
+                  <input type="number" value={eng} onChange={handleEng} />
+                </div>
+                <div>
+                  <label htmlFor="">
+                    Informations and Communicaton Technology
+                  </label>
+                  <input type="number" value={ict} onChange={handleIct} />
+                </div>
+                <div>
+                  <label htmlFor=""> Physics</label>
+                  <input type="number" value={phy} onChange={handlePhye} />
+                </div>
+                <div>
+                  <label htmlFor="">Chemistry</label>
+                  <input type="number" value={chem} onChange={handleChem} />
+                </div>
+                <div>
+                  <label htmlFor=""> Higher Mathmatics</label>
+                  <input type="number" value={math} onChange={handleMath} />
+                </div>
+                <div>
+                  <label htmlFor=""> Biology</label>
+                  <input type="number" value={bio} onChange={handleBio} />
+                </div>
+              </section>
+            </section>
+            <div
+              style={{
+                margin: "0 auto",
+              }}
+            >
+              <button type="submit">
+                {!isLoading ? "Submit Result" : "Loading..."}
+              </button>
             </div>
           </form>
         </section>

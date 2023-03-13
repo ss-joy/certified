@@ -22,13 +22,13 @@ const hscCertificateSchema = new mongoose.Schema({
 
   group: String,
 
-  bangla: String,
-  english: String,
-  physics: String,
-  Chemistry: String,
-  higherMath: String,
-  biology: String,
-  ict: String,
+  bangla: Number,
+  english: Number,
+  physics: Number,
+  Chemistry: Number,
+  higherMath: Number,
+  biology: Number,
+  ict: Number,
 });
 
 module.exports = mongoose.model("HscCertificate", hscCertificateSchema);

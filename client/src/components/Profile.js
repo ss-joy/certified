@@ -3,11 +3,13 @@ import temp from "../assets/sust.png";
 import AuthContext from "../contexts/auth-context";
 import "./Profile.css";
 export default function Profile() {
+  //for admin
   const [admin, setAdmin] = useState({
     name: "",
     mobile: "",
     email: "",
   });
+  //for student
   const [stuName, setStuName] = useState("");
   const [fName, setFName] = useState("");
   const [MName, setMName] = useState("");
@@ -63,18 +65,32 @@ export default function Profile() {
 
   const studentContent = (
     <ul>
-      <li>Name:&nbsp;&nbsp;&nbsp;{stuName}</li>
-      <li>Fathers Name:&nbsp;&nbsp;&nbsp;{fName}</li>
-      <li>Mothers Name:&nbsp;&nbsp;&nbsp;{MName}</li>
-      <li>HSC Reg No:&nbsp;&nbsp;&nbsp;{reg}</li>
+      <li>
+        <strong>Name:</strong>&nbsp;&nbsp;&nbsp;{stuName}
+      </li>
+      <li>
+        <strong>Fathers Name:</strong>&nbsp;&nbsp;&nbsp;{fName}
+      </li>
+      <li>
+        <strong>Mothers Name:</strong>&nbsp;&nbsp;&nbsp;{MName}
+      </li>
+      <li>
+        <strong>HSC Reg No:</strong>&nbsp;&nbsp;&nbsp;{reg}
+      </li>
       <button id="profile-btn">Apply to SUST Admission</button>
     </ul>
   );
   const adminContent = (
     <ul>
-      <li>Name: &nbsp;&nbsp;&nbsp;{admin.name}</li>
-      <li>Phone No:&nbsp;&nbsp;&nbsp; {admin.mobile}</li>
-      <li>Email:&nbsp;&nbsp;&nbsp; {admin.email}</li>
+      <li>
+        <strong>Name:</strong> &nbsp;&nbsp;&nbsp;{admin.name}
+      </li>
+      <li>
+        <strong>Phone No:</strong>&nbsp;&nbsp;&nbsp; {admin.mobile}
+      </li>
+      <li>
+        <strong>Email:</strong>&nbsp;&nbsp;&nbsp; {admin.email}
+      </li>
     </ul>
   );
   const adminMsg = (

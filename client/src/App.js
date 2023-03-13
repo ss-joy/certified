@@ -24,7 +24,21 @@ export default function App() {
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/about" element={<About />} />
-        <Route path="/certifiate" element={<Certificate />} />
+        <Route
+          path="/certifiate"
+          element={
+            authCtx.isLoggedIn && !authCtx.isAdmin ? (
+              <Certificate />
+            ) : (
+              <section id="not-logged-in">
+                <img src={sadUser} id="not-logged-in-img" alt="" />
+
+                <article>Sorry you are not logged in as a student.</article>
+                <article>Log in to view the student certificate page</article>
+              </section>
+            )
+          }
+        />
 
         <Route
           path="/admin"
