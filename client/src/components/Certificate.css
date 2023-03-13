@@ -14,3 +14,12 @@
 #certi-student-info {
   margin-bottom: 30px;
 }
+#cert-student-result table,
+th,
+tr,
+td {
+  padding: 7px;
+  border: 2px solid black;
+  border-style: solid;
+  border-collapse: collapse;
+}

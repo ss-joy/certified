@@ -9,7 +9,7 @@ export default function About() {
       style={{
         padding: "60px",
         display: "flex",
-        justifyContent: "space-between",
+        justifyContent: "space-around",
       }}
     >
       <Avatar info={{ name: "Sakil Sazzad Joy", image: joy }} />

@@ -1,31 +1,29 @@
 const jwt = require("jsonwebtoken");
 const AllStudents = require("../models/all-students");
-const hscCertificate = require("../models/hsc-certificate");
-const hsCrtificate = require("../models/hsc-certificate");
-// function getStudentProfile(req, res) {
-//   try {
-//     const { authorization } = req.headers;
-//     const token = authorization.split(" ")[1];
-//     const decoded = jwt.verify(token, "superdupersecret");
-//     const { userEmail, userId } = decoded;
-//     console.log(decoded);
-//     res.json({
-//       msg: "lol",
-//     });
-//   } catch (err) {
-//     res.json({
-//       msg: "you are not logged in to view the profile page",
-//     });
-//     console.log(err);
-//   }
-// }
+const hscCrtificate = require("../models/hsc-certificate");
+async function getStudentProfile(req, res) {
+  try {
+    const { authorization } = req.headers;
+    const token = authorization.split(" ")[1];
+    const decoded = jwt.verify(token, "superdupersecret");
+    const { userEmail, userId, reg } = decoded;
+    const stu = await hscCrtificate.findOne({ reg });
+
+    res.json(stu);
+  } catch (err) {
+    res.json({
+      msg: "you are not logged in to view the profile page",
+    });
+    console.log(err);
+  }
+}
 async function getCerti(req, res) {
   const { authorization } = req.headers;
   const token = authorization.split(" ")[1];
 
   const decoded = jwt.verify(token, "superdupersecret");
   const { userEmail, userId, reg } = decoded;
-  const resp = await hscCertificate.findOne({ reg });
+  const resp = await hscCrtificate.findOne({ reg });
 
   res.json({ resp });
 }
@@ -83,7 +81,7 @@ async function saveCertificate(req, res) {
   //   math,
   //   bio
   // );
-  const Hsc = new hsCrtificate({
+  const Hsc = new hscCrtificate({
     name: name,
     father: fName,
     mother: mName,
@@ -107,5 +105,6 @@ module.exports = {
   enterNewStudent: enterNewStudent,
   saveCertificate: saveCertificate,
   getCerti: getCerti,
+  getStudentProfile,
   // getStudentProfile: getStudentProfile
 };

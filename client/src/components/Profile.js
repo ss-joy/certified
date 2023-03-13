@@ -8,17 +8,26 @@ export default function Profile() {
     mobile: "",
     email: "",
   });
+  const [stuName, setStuName] = useState("");
+  const [fName, setFName] = useState("");
+  const [MName, setMName] = useState("");
+  const [reg, setReg] = useState("");
 
   const authCtx = useContext(AuthContext);
 
   const getStudentProfile = useCallback(async () => {
-    const response = await fetch("http://localhost:5000/api/profile/1", {
+    const response = await fetch("http://localhost:5000/api/student/profile", {
       headers: {
         Authorization: `Bearer ${authCtx.token}`,
       },
     });
     if (response.status >= 200 && response.status < 300) {
       const responseData = await response.json();
+
+      setFName(responseData.father);
+      setMName(responseData.mother);
+      setReg(responseData.reg);
+      setStuName(responseData.name);
     } else {
       const errorResponceData = await response.json();
     }
@@ -54,19 +63,18 @@ export default function Profile() {
 
   const studentContent = (
     <ul>
-      <li>Name:</li>
-      <li>Fathers Name:</li>
-      <li>Mothers Name:</li>
-      <li>HSC Reg No:</li>
-      <li>Birthday:</li>
+      <li>Name:&nbsp;&nbsp;&nbsp;{stuName}</li>
+      <li>Fathers Name:&nbsp;&nbsp;&nbsp;{fName}</li>
+      <li>Mothers Name:&nbsp;&nbsp;&nbsp;{MName}</li>
+      <li>HSC Reg No:&nbsp;&nbsp;&nbsp;{reg}</li>
       <button id="profile-btn">Apply to SUST Admission</button>
     </ul>
   );
   const adminContent = (
     <ul>
-      <li>Name: {admin.name}</li>
-      <li>Phone No: {admin.mobile}</li>
-      <li>Email: {admin.email}</li>
+      <li>Name: &nbsp;&nbsp;&nbsp;{admin.name}</li>
+      <li>Phone No:&nbsp;&nbsp;&nbsp; {admin.mobile}</li>
+      <li>Email:&nbsp;&nbsp;&nbsp; {admin.email}</li>
     </ul>
   );
   const adminMsg = (

@@ -10,4 +10,5 @@ router.post(
 );
 router.post("/api/save-certificate", studentController.saveCertificate);
 router.get("/api/get-certificate", studentController.getCerti);
+router.get("/api/student/profile", studentController.getStudentProfile);
 module.exports = router;

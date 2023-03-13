@@ -56,93 +56,105 @@ export default function Certificate() {
       </section>
       <section id="certi-student-info">
         <ul>
-          <li>Name of the student :{name}</li>
-          <li>Father's Name :{fName}</li>
-          <li>Mother's Name: {mName}</li>
-          <li>Name of the Institution: {insName}</li>
-          <li>Name of Centre: {center}</li>
-          <li>Reg No: {reg}</li>
-          <li>Group: {group}</li>
+          <li>
+            <strong>Name of the student :</strong>&nbsp;&nbsp;&nbsp;{name}
+          </li>
+          <li>
+            <strong>Father's Name :</strong> &nbsp;&nbsp;&nbsp;{fName}
+          </li>
+          <li>
+            <strong>Mother's Name:</strong> &nbsp;&nbsp;&nbsp; {mName}
+          </li>
+          <li>
+            <strong>Name of the Institution:</strong> &nbsp;&nbsp;&nbsp;{" "}
+            {insName}
+          </li>
+          <li>
+            <strong>Name of Centre: </strong> &nbsp;&nbsp;&nbsp;{center}
+          </li>
+          <li>
+            <strong> Reg No:</strong> &nbsp;&nbsp;&nbsp; {reg}
+          </li>
+          <li>
+            <strong> Group:</strong> &nbsp;&nbsp;&nbsp; {group}
+          </li>
         </ul>
       </section>
       <section id="cert-student-result">
         <table>
-          <thead>
-            <tr>
-              <th>SL No.</th>
-              <th>Name of SUbject</th>
-              <th>Marks Obtained</th>
-              <th>Letter Grade</th>
-              <th>Grade Point</th>
-              <th>GPA(without additional subject)</th>
-              <th>GPA</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>1</td>
-              <td>Bangla</td>
-              <td></td>
-              <td>{bangla}</td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>2</td>
-              <td>English</td>
-              <td></td>
-              <td>{eng}</td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>3</td>
-              <td>Informations and Communicaton Technology</td>
-              <td></td>
-              <td>{ict}</td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>4</td>
-              <td>Physics</td>
-              <td></td>
-              <td>{phy}</td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>5</td>
-              <td>Chemistry</td>
-              <td></td>
-              <td>{chem}</td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>6</td>
-              <td>Higher Mathmatics</td>
-              <td></td>
-              <td>{math}</td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-            <tr>
-              <td>7</td>
-              <td>Biology</td>
-              <td></td>
-              <td>{bio}</td>
-              <td></td>
-              <td></td>
-              <td></td>
-            </tr>
-          </tbody>
+          <tr>
+            <th>SL No.</th>
+            <th>Name of SUbject</th>
+            <th>Marks Obtained</th>
+            <th>Letter Grade</th>
+            <th>Grade Point</th>
+            <th>GPA(without additional subject)</th>
+            <th>GPA</th>
+          </tr>
+
+          <tr>
+            <td>1</td>
+            <td>Bangla</td>
+            <td></td>
+            <td>{bangla}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>2</td>
+            <td>English</td>
+            <td></td>
+            <td>{eng}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>3</td>
+            <td>Informations and Communicaton Technology</td>
+            <td></td>
+            <td>{ict}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>4</td>
+            <td>Physics</td>
+            <td></td>
+            <td>{phy}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>5</td>
+            <td>Chemistry</td>
+            <td></td>
+            <td>{chem}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>6</td>
+            <td>Higher Mathmatics</td>
+            <td></td>
+            <td>{math}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
+          <tr>
+            <td>7</td>
+            <td>Biology</td>
+            <td></td>
+            <td>{bio}</td>
+            <td></td>
+            <td></td>
+            <td></td>
+          </tr>
         </table>
       </section>
     </div>
