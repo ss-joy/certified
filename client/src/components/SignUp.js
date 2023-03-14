@@ -34,11 +34,8 @@ export default function SignUp() {
   async function sendSignupRequest(studentInfo) {
     const response = await fetch("http://localhost:5000/api/signup", {
       method: "POST",
-      // data,
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(studentInfo),
+
+      body: studentInfo,
     });
     if (response.status >= 200 && response.status < 300) {
       alert("You have successfully signed up");
@@ -53,28 +50,27 @@ export default function SignUp() {
   function handleSubmit(e) {
     e.preventDefault();
     // console.log(reg, password, file);
-    const studentInfo = {
-      reg,
-      password,
-      email,
-    };
+    // const studentInfo = {
+    //   reg,
+    //   password,
+    //   email,
+    // };
+
+    const data = new FormData();
+    data.append("reg", reg);
+    data.append("password", password);
+    data.append("email", email);
+    data.append("images", file);
 
     // sendSignupRequest(studentInfo);
-    // const data = new FormData();
-    // data.append("reg", reg);
-    // data.append("password", password);
-    // data.append("email", email);
-    // data.append("image", file);
-    // // console.log(file);
-    // // console.log(formData);for
-    sendSignupRequest(studentInfo);
+    sendSignupRequest(data);
   }
-  // function filePicked(e) {
-  //   if (e.target.files || e.target.files.length === 1) {
-  //     const pickedFile = e.target.files[0];
-  //     setFile(pickedFile);
-  //   }
-  // }
+  function filePicked(e) {
+    if (e.target.files || e.target.files.length === 1) {
+      const pickedFile = e.target.files[0];
+      setFile(pickedFile);
+    }
+  }
   return (
     <div id="signup-form">
       {signUpHasError && (
@@ -130,21 +126,21 @@ export default function SignUp() {
             onChange={handleRegChange}
           />
         </div>
-        {/* <div>
-          <label htmlFor="photo">Pick an image for you</label>
+        <div>
+          <label htmlFor="image">Pick an image for you</label>
           <input
             type="file"
-            id="photo"
+            id="image"
             name="image"
             accept="image/*"
             onChange={filePicked}
           />
-        </div> */}
-        {/* {previewUrl && (
+        </div>
+        {previewUrl && (
           <div id="preview-img-container">
             <img id="img-preview" src={previewUrl} alt="" />
           </div>
-        )} */}
+        )}
 
         <button>Sign Up</button>
       </form>

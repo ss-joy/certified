@@ -2,7 +2,7 @@ import React, { useState, useContext } from "react";
 import "./Login.css";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../contexts/auth-context";
-export default function Login() {
+export default function Login(props) {
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
   const [didLoginFailed, setDidLoginFailed] = useState(false);
@@ -26,12 +26,18 @@ export default function Login() {
     setIsLoading(false);
     if (response.status >= 200 && response.status < 300) {
       const responseData = await response.json();
+
       // const expirationTime = new Date(
       //   new Date().getTime() + +responseData.expiresIn * 1000
       // );
       // console.log(expirationTime);
       // authCtx.login(responseData.token, expirationTime.toISOString());
-      console.log(responseData);
+      // console.log(responseData.image);
+      localStorage.setItem(
+        "userImage",
+        `http://localhost:5000/api/${responseData.image}`
+      );
+      // props.onImageChange(`http://localhost:5000/api/${responseData.image}`);
       authCtx.login(responseData.token);
       authCtx.setNewCurrentUserId(responseData.userId);
       if (responseData.isAdmin) {

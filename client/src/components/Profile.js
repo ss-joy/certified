@@ -25,7 +25,6 @@ export default function Profile() {
     });
     if (response.status >= 200 && response.status < 300) {
       const responseData = await response.json();
-
       setFName(responseData.father);
       setMName(responseData.mother);
       setReg(responseData.reg);

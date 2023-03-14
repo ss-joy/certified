@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import "./App.css";
 import Home from "./components/Home";
 import Header from "./components/Header";
@@ -13,15 +13,28 @@ import pageNotFound from "./assets/page-not-found.jpg";
 import StudentControl from "./components/StudentControl";
 import About from "./components/About";
 import Certificate from "./components/Certificate";
-
+import defaultUserImage from "./assets/default.jpg";
 export default function App() {
+  const foundUserImage = localStorage.getItem("userImage");
+  let userProImage = defaultUserImage;
+  if (foundUserImage) {
+    userProImage = foundUserImage;
+  }
+  const [defaultUserAvatarImage, setdefaultUserAvatarImage] =
+    useState(userProImage);
+  function avatarImageChange(newUserImage) {
+    setdefaultUserAvatarImage(newUserImage);
+  }
   const authCtx = useContext(AuthContext);
   return (
     <div className="app">
-      <Header />
+      <Header dUserImage={defaultUserAvatarImage} />
       <Routes>
         <Route path="/" element={<Home />} />
-        <Route path="/login" element={<Login />} />
+        <Route
+          path="/login"
+          element={<Login onImageChange={avatarImageChange} />}
+        />
         <Route path="/signup" element={<SignUp />} />
         <Route path="/about" element={<About />} />
         <Route

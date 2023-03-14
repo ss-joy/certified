@@ -5,8 +5,6 @@ const jwt = require("jsonwebtoken");
 const allStdents = require("../models/all-students");
 
 async function signupUser(req, res) {
-  // console.log(req.body);
-  // console.log(req.file);
   const { reg, email, password } = req.body;
   const userExists = await Student.find({ email: email });
   if (userExists.length != 0) {
@@ -21,6 +19,7 @@ async function signupUser(req, res) {
     email,
     reg,
     password: hash,
+    image: req.file.path,
   });
   student
     .save()
@@ -64,6 +63,7 @@ async function loginUser(req, res) {
       userId: admins[j].id,
       email: admins[j].email,
       token: jwtToken,
+
       expiresIn: "1",
     });
   }
@@ -71,7 +71,6 @@ async function loginUser(req, res) {
   //////
   //student validation
   const studentFound = await Student.findOne({ email: email });
-
   if (!studentFound) {
     return res.status(404).json({
       msg: "Couldnt find your email.Please sign up first to log in",
@@ -83,7 +82,7 @@ async function loginUser(req, res) {
       msg: "Authentication failed",
     });
   }
-  const studentMailFound = await allStdents.findOne({ mail: email });
+  // const studentMailFound = await allStdents.findOne({ mail: email });
   // console.log(studentMailFound);
   // console.log(studentMailFound.reg);
 
@@ -100,6 +99,7 @@ async function loginUser(req, res) {
   );
   //login ok
   res.status(200).json({
+    image: studentFound.image,
     userId: studentFound.id,
     email: studentFound.email,
     token: jwtToken,

@@ -1,9 +1,10 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import "./Header.css";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../assets/sust.png";
 import AuthContext from "../contexts/auth-context";
-export default function Header() {
+
+export default function Header(props) {
   const authCtx = useContext(AuthContext);
   function handleLogout() {
     authCtx.logout();
@@ -46,7 +47,18 @@ export default function Header() {
           )}
           {authCtx.isLoggedIn && (
             <li>
-              <NavLink to={"/profile"}>Profile</NavLink>
+              <NavLink to={"/profile"}>
+                <img
+                  style={{
+                    width: "50px",
+                    border: "2px solid pink",
+                    borderRadius: "50%",
+                    padding: "2px",
+                  }}
+                  src={props.dUserImage}
+                  alt="default user"
+                />
+              </NavLink>
             </li>
           )}
           {authCtx.isLoggedIn && (

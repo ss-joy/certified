@@ -5,6 +5,7 @@ const cors = require("cors");
 const authRoutes = require("./routes/auth-routes");
 const studentRoutes = require("./routes/student-routes");
 const adminRoute = require("./routes/admin-route");
+const path = require("path");
 // const session = require("express-session");
 // const MongodbStore = require("connect-mongodb-session");
 // const MongoDBStore = MongodbStore(session);
@@ -24,6 +25,7 @@ const adminRoute = require("./routes/admin-route");
 //   })
 // );
 app.use(cors());
+app.use("/api/images", express.static(path.join("images")));
 app.use(express.urlencoded({ extended: false }));
 app.use(express.json());
 
