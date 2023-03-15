@@ -34,7 +34,10 @@ export default function Login(props) {
       // console.log(expirationTime);
       // authCtx.login(responseData.token, expirationTime.toISOString());
       // console.log(responseData.image);
-
+      localStorage.setItem(
+        "userImage",
+        `http://localhost:5000/api/${responseData.image}`
+      );
       props.onImageChange(`http://localhost:5000/api/${responseData.image}`);
       authCtx.login(responseData.token);
       authCtx.setNewCurrentUserId(responseData.userId);

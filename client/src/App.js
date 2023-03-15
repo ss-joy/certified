@@ -15,8 +15,15 @@ import About from "./components/About";
 import Certificate from "./components/Certificate";
 import defaultUserImage from "./assets/default.jpg";
 export default function App() {
+  let defaultAvatarImage;
+  let immg = localStorage.getItem("userImage");
+  if (immg) {
+    defaultAvatarImage = immg;
+  } else {
+    defaultAvatarImage = defaultUserImage;
+  }
   const [defaultUserAvatarImage, setdefaultUserAvatarImage] =
-    useState(defaultUserImage);
+    useState(defaultAvatarImage);
   function avatarImageChange(newUserImage) {
     setdefaultUserAvatarImage(newUserImage);
   }
