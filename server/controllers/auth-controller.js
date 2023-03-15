@@ -48,6 +48,11 @@ async function loginUser(req, res) {
       break;
     }
   }
+  let anAdmin;
+  if (isAdmin) {
+    anAdmin = await Admin.findOne({ email: email });
+  }
+
   if (isAdmin) {
     jwtToken = jwt.sign(
       {
@@ -59,6 +64,7 @@ async function loginUser(req, res) {
       }
     );
     return res.status(200).json({
+      image: anAdmin.image,
       isAdmin: isAdmin,
       userId: admins[j].id,
       email: admins[j].email,
@@ -82,9 +88,6 @@ async function loginUser(req, res) {
       msg: "Authentication failed",
     });
   }
-  // const studentMailFound = await allStdents.findOne({ mail: email });
-  // console.log(studentMailFound);
-  // console.log(studentMailFound.reg);
 
   jwtToken = jwt.sign(
     {

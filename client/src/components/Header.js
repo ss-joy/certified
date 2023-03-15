@@ -1,4 +1,4 @@
-import React, { useContext, useState } from "react";
+import React, { useContext } from "react";
 import "./Header.css";
 import { Link, NavLink } from "react-router-dom";
 import logo from "../assets/sust.png";
@@ -47,7 +47,7 @@ export default function Header(props) {
           )}
           {authCtx.isLoggedIn && (
             <li>
-              <NavLink to={"/profile"}>
+              <NavLink id="special" to={"/profile"}>
                 <img
                   style={{
                     width: "50px",

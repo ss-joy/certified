@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import "./Certificate.css";
 import AuthContext from "../contexts/auth-context";
 
-export default function Certificate() {
+export default function Certificate(props) {
   const authCtx = useContext(AuthContext);
   const [name, setName] = useState(null);
   const [fName, setFName] = useState(null);

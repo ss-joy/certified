@@ -1,15 +1,13 @@
 import React, { useCallback, useContext, useEffect, useState } from "react";
-import temp from "../assets/sust.png";
 import AuthContext from "../contexts/auth-context";
 import "./Profile.css";
-export default function Profile() {
+export default function Profile(props) {
   //for admin
   const [admin, setAdmin] = useState({
     name: "",
     mobile: "",
     email: "",
   });
-  //for student
   const [stuName, setStuName] = useState("");
   const [fName, setFName] = useState("");
   const [MName, setMName] = useState("");
@@ -104,7 +102,7 @@ export default function Profile() {
   return (
     <div id="profile">
       <section id="profile-image">
-        <img src={temp} alt="" />
+        <img src={props.dUserImage} alt="" />
       </section>
       <section id="user-details">
         {isUserAdmin && <p id="admin">Welcome to the admin panel</p>}

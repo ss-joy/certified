@@ -26,6 +26,7 @@ export default function Login(props) {
     setIsLoading(false);
     if (response.status >= 200 && response.status < 300) {
       const responseData = await response.json();
+      console.log(responseData);
 
       // const expirationTime = new Date(
       //   new Date().getTime() + +responseData.expiresIn * 1000
@@ -33,11 +34,8 @@ export default function Login(props) {
       // console.log(expirationTime);
       // authCtx.login(responseData.token, expirationTime.toISOString());
       // console.log(responseData.image);
-      localStorage.setItem(
-        "userImage",
-        `http://localhost:5000/api/${responseData.image}`
-      );
-      // props.onImageChange(`http://localhost:5000/api/${responseData.image}`);
+
+      props.onImageChange(`http://localhost:5000/api/${responseData.image}`);
       authCtx.login(responseData.token);
       authCtx.setNewCurrentUserId(responseData.userId);
       if (responseData.isAdmin) {

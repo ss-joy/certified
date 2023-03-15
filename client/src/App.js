@@ -15,13 +15,8 @@ import About from "./components/About";
 import Certificate from "./components/Certificate";
 import defaultUserImage from "./assets/default.jpg";
 export default function App() {
-  const foundUserImage = localStorage.getItem("userImage");
-  let userProImage = defaultUserImage;
-  if (foundUserImage) {
-    userProImage = foundUserImage;
-  }
   const [defaultUserAvatarImage, setdefaultUserAvatarImage] =
-    useState(userProImage);
+    useState(defaultUserImage);
   function avatarImageChange(newUserImage) {
     setdefaultUserAvatarImage(newUserImage);
   }
@@ -73,7 +68,7 @@ export default function App() {
           path="/profile"
           element={
             authCtx.isLoggedIn ? (
-              <Profile />
+              <Profile dUserImage={defaultUserAvatarImage} />
             ) : (
               <section id="not-logged-in">
                 <img src={sadUser} id="not-logged-in-img" alt="" />

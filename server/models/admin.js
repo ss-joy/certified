@@ -10,5 +10,6 @@ const adminSchema = mongoose.Schema({
   mobile: {
     type: String,
   },
+  image: String,
 });
 module.exports = mongoose.model("admin", adminSchema);
