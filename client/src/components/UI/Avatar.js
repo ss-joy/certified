@@ -10,7 +10,7 @@ export default function Avatar(props) {
         </div>
         <div className="card-title">{props.info.name}</div>
         <div className="card-subtitle">
-          Student &amp; Shahjalal University Of Science and Technology
+          {props.role} @ &amp; Shahjalal University Of Science and Technology
         </div>
       </div>
       <ul className="card-social">

@@ -20,7 +20,7 @@ export default function About() {
       </h2>
 
       <div style={{ margin: "20px auto", textAlign: "center", width: "280px" }}>
-        <Avatar info={{ name: "Md Masum", image: masumsir }} />
+        <Avatar role="teacher " info={{ name: "Md Masum", image: masumsir }} />
       </div>
       <h2
         style={{
@@ -41,8 +41,14 @@ export default function About() {
           justifyContent: "space-around",
         }}
       >
-        <Avatar info={{ name: "Sakil Sazzad Joy", image: joy }} />
-        <Avatar info={{ name: "Abdullah Khan anan", image: anan }} />
+        <Avatar
+          role="student"
+          info={{ name: "Sakil Sazzad Joy", image: joy }}
+        />
+        <Avatar
+          role="student"
+          info={{ name: "Abdullah Khan anan", image: anan }}
+        />
       </div>
     </div>
   );
